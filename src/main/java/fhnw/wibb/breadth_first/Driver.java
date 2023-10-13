@@ -1,5 +1,6 @@
 package fhnw.wibb.breadth_first;
 
+import fhnw.wibb.breadth_first.Models.BreadthFirst;
 import fhnw.wibb.breadth_first.Models.Node;
 import fhnw.wibb.breadth_first.util.Loader;
 
@@ -11,6 +12,7 @@ public class Driver {
     public static void main(String[] args) {
 
         ArrayList<Node> nodeList = Loader.load();
+        BreadthFirst.breadthFirst(nodeList.get(0), nodeList.get(20));
         System.out.println();
 
     }
