@@ -5,21 +5,22 @@ public class Node {
 
     // Fields
     private String name;
-    private ArrayList<Node> nodeNeighbours;
+    private Node parent;
+    private ArrayList<Node> neighbours;
 
     public Node(String name) {
         this.name = name;
-        this.nodeNeighbours = new ArrayList<>();
+        this.neighbours = new ArrayList<>();
     }
 
     // Getters & Setters
 
-    public ArrayList<Node> getNodeNeighbours() {
-        return nodeNeighbours;
+    public ArrayList<Node> getNeighbours() {
+        return neighbours;
     }
 
-    public void setNodeNeighbours(ArrayList<Node> nodeNeighbours) {
-        this.nodeNeighbours = nodeNeighbours;
+    public void setNeighbours(ArrayList<Node> neighbours) {
+        this.neighbours = neighbours;
     }
 
     public String getName() {
@@ -30,4 +31,20 @@ public class Node {
         this.name = name;
     }
 
+    public Node getParent() {
+        return parent;
+    }
+
+    public void setParent(Node parent) {
+        this.parent = parent;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) { return false; }
+        if(obj.getClass() != this.getClass()) { return false; }
+
+        Node comprarer = (Node) obj;
+        return this.name.equals(comprarer.name);
+    }
 }
