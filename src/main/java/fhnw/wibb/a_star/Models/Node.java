@@ -8,15 +8,19 @@ public class Node {
     private String name;
     private int x;
     private int y;
-    private double EdToDestination;
+    private double hCost;   // The heuristic -> Euclidean distance to the destination
+    private double gCost;   // The sum of the costs of all edges from the start to the current node
+    private double totalCost;   // gCost + fCost
     private Node parent;
     private ArrayList<Edge> edges;
     private ArrayList<Node> neighbours;
+
 
     public Node(String name) {
         this.name = name;
         this.neighbours = new ArrayList<>();
         this.edges = new ArrayList<>();
+        this.gCost = Double.MAX_VALUE;
     }
 
     // Getters & Setters
@@ -68,12 +72,29 @@ public class Node {
         this.y = y;
     }
 
-    public double getEdToDestination() {
-        return EdToDestination;
+    public double gethCost() {
+        return hCost;
     }
 
-    public void setEdToDestination(double edToDestination) {
-        this.EdToDestination = edToDestination;
+    public void sethCost(double hCost) {
+        this.hCost = hCost;
+    }
+
+    public double getgCost() {
+        return gCost;
+    }
+
+    public void setgCost(double gCost) {
+        this.gCost = gCost;
+    }
+
+    public double getTotalCost() {
+        return this.gCost + this.hCost;
+    }
+
+    public void setTotalCost(double gCost, double hCost) {
+        this.hCost = hCost;
+        this.totalCost = gCost + hCost;
     }
 
     @Override

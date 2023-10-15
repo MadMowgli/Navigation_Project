@@ -180,8 +180,7 @@ public class Loader {
                 fhnw.wibb.a_star.Models.Node node2 = new fhnw.wibb.a_star.Models.Node(parts[1]);
                 Double length = Double.parseDouble(parts[2]);
                 Edge edge = new Edge(node1, node2, length);
-                node1.getEdges().add(edge);
-                node2.getEdges().add(edge);
+
 
                 if(nodeList.contains(node1)) {
                     node1 = nodeList.get(nodeList.indexOf(node1));
@@ -189,6 +188,8 @@ public class Loader {
                 if(nodeList.contains(node2)) {
                     node2 = nodeList.get(nodeList.indexOf(node2));
                 }
+                node1.getEdges().add(edge);
+                node2.getEdges().add(edge);
 
                 node1.getNeighbours().add(node2);
                 node2.getNeighbours().add(node1);
@@ -211,7 +212,6 @@ public class Loader {
                     fhnw.wibb.a_star.Models.Node node = new fhnw.wibb.a_star.Models.Node(parts[0]);
                     if(nodeList.contains(node)) {
                         node = nodeList.get(nodeList.indexOf(node));
-                        System.out.println("");
                     }
 
                     node.setX(Integer.parseInt(parts[1]));

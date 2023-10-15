@@ -2,6 +2,7 @@ package fhnw.wibb.a_star;
 
 import fhnw.wibb.a_star.Models.AStar;
 import fhnw.wibb.a_star.Models.Node;
+import fhnw.wibb.breadth_first.Models.BreadthFirst;
 import fhnw.wibb.util.Loader;
 
 import java.util.ArrayList;
@@ -14,7 +15,17 @@ public class Driver {
 
         // Load data from the csv files
         ArrayList<Node> nodeList = Loader.loadAStarNodes();
-        List<Node> shortestPath = AStar.aStarSearch(nodeList.get(0), nodeList.get(10));
+        Node start = nodeList.get(0);
+        Node end = nodeList.get(10);
+
+        // Search the shortest path using a*
+        List<Node> shortestPath = AStar.aStarSearch(start, end);
+        System.out.println("/////////////////////////////// BREADTH FIRST SEARCH RESULTS");
+        System.out.println("///////// STARTING NODE: " + start.getName());
+        System.out.println("///////// ENDING NODE: " + end.getName());
+        System.out.println("///////// PATH: ");
+        shortestPath.stream().forEach(node -> System.out.println("//// " + node.getName() + " ->"));
+        System.out.println("///////////////////////////////");
 
         System.out.println();
 
