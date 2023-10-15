@@ -16,8 +16,11 @@ public class Driver {
         ArrayList<Node> nodeList = Loader.loadBreadthFirstNodes();
 
         // Pick 2 random nodes for start & end
-        Node start = nodeList.get(ThreadLocalRandom.current().nextInt(0, nodeList.size() + 1));
-        Node end = nodeList.get(ThreadLocalRandom.current().nextInt(0, nodeList.size() + 1));
+//        Node start = nodeList.get(ThreadLocalRandom.current().nextInt(0, nodeList.size() + 1));
+//        Node end = nodeList.get(ThreadLocalRandom.current().nextInt(0, nodeList.size() + 1));
+
+        Node start = nodeList.get(0);
+        Node end = nodeList.get(10);
 
         // Search the shortest path using breadth first
         ArrayList<Node> shortestPath = BreadthFirst.breadthFirstFind(start, end);
