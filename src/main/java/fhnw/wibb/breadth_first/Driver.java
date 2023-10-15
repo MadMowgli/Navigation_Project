@@ -2,7 +2,7 @@ package fhnw.wibb.breadth_first;
 
 import fhnw.wibb.breadth_first.Models.BreadthFirst;
 import fhnw.wibb.breadth_first.Models.Node;
-import fhnw.wibb.breadth_first.util.Loader;
+import fhnw.wibb.util.Loader;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -13,7 +13,7 @@ public class Driver {
     public static void main(String[] args) {
 
         // Load data from the csv files
-        ArrayList<Node> nodeList = Loader.load();
+        ArrayList<Node> nodeList = Loader.loadBreadthFirstNodes();
 
         // Pick 2 random nodes for start & end
         Node start = nodeList.get(ThreadLocalRandom.current().nextInt(0, nodeList.size() + 1));

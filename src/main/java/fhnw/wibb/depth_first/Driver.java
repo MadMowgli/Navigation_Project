@@ -1,7 +1,7 @@
 package fhnw.wibb.depth_first;
-import fhnw.wibb.breadth_first.Models.BreadthFirst;
-import fhnw.wibb.depth_first.Node;
-import fhnw.wibb.depth_first.Loader;
+import fhnw.wibb.depth_first.Models.DepthFirstSearch;
+import fhnw.wibb.depth_first.Models.Node;
+import fhnw.wibb.util.Loader;
 
 import java.util.ArrayList;
 public class Driver {
@@ -9,7 +9,7 @@ public class Driver {
     // This is the driver class for the depth  first package. Use it to run the algorithm.
     public static void main(String[] args) {
 
-        ArrayList<Node> nodeList = Loader.load();
+        ArrayList<Node> nodeList = Loader.loadDepthFirstNodes();
         Node start = nodeList.get(0);
         Node end = nodeList.get(10);
         ArrayList<Node> path = DepthFirstSearch.findPath(start, end);

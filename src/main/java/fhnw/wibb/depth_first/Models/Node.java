@@ -1,4 +1,4 @@
-package fhnw.wibb.depth_first;
+package fhnw.wibb.depth_first.Models;
 import java.util.ArrayList;
 
 public class Node {

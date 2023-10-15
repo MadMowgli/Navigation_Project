@@ -1,8 +1,8 @@
 package fhnw.wibb.a_star;
 
-import fhnw.wibb.a_star.Models.AStarAlgorithm;
+import fhnw.wibb.a_star.Models.AStar;
 import fhnw.wibb.a_star.Models.Node;
-import fhnw.wibb.a_star.util.Loader;
+import fhnw.wibb.util.Loader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,8 @@ public class Driver {
     public static void main(String[] args) {
 
         // Load data from the csv files
-        ArrayList<Node> nodeList = Loader.load();
-        List<Node> shortestPath = AStarAlgorithm.aStar(nodeList.get(0), nodeList.get(10));
+        ArrayList<Node> nodeList = Loader.loadAStarNodes();
+        List<Node> shortestPath = AStar.aStarSearch(nodeList.get(0), nodeList.get(10));
 
         System.out.println();
 
