@@ -30,10 +30,10 @@ public class Loader {
                 Node node1 = new Node(parts[0]);
                 Node node2 = new Node(parts[1]);
 
-                if(nodeList.contains(node1)) {
+                if (nodeList.contains(node1)) {
                     node1 = nodeList.get(nodeList.indexOf(node1));
                 }
-                if(nodeList.contains(node2)) {
+                if (nodeList.contains(node2)) {
                     node2 = nodeList.get(nodeList.indexOf(node2));
                 }
 
@@ -70,10 +70,10 @@ public class Loader {
                 fhnw.wibb.breadth_first.Models.Node node1 = new fhnw.wibb.breadth_first.Models.Node(parts[0]);
                 fhnw.wibb.breadth_first.Models.Node node2 = new fhnw.wibb.breadth_first.Models.Node(parts[1]);
 
-                if(nodeList.contains(node1)) {
+                if (nodeList.contains(node1)) {
                     node1 = nodeList.get(nodeList.indexOf(node1));
                 }
-                if(nodeList.contains(node2)) {
+                if (nodeList.contains(node2)) {
                     node2 = nodeList.get(nodeList.indexOf(node2));
                 }
 
@@ -115,8 +115,12 @@ public class Loader {
                 fhnw.wibb.best_first.Models.Node node2 = new fhnw.wibb.best_first.Models.Node(parts[1]);
 
                 // Take already existing nodes to set neighbours
-                if(nodeList.contains(node1)) { node1 = nodeList.get(nodeList.indexOf(node1)); }
-                if(nodeList.contains(node2)) { node2 = nodeList.get(nodeList.indexOf(node2));}
+                if (nodeList.contains(node1)) {
+                    node1 = nodeList.get(nodeList.indexOf(node1));
+                }
+                if (nodeList.contains(node2)) {
+                    node2 = nodeList.get(nodeList.indexOf(node2));
+                }
 
                 // Set neighbours & add nodes to list
                 node1.getNeighbours().add(node2);
@@ -131,7 +135,7 @@ public class Loader {
             nodeList.addAll(nodeSet);
 
             // Add coordinates to all nodes in the list
-            try(BufferedReader brn = new BufferedReader(new InputStreamReader(Loader.class.getResourceAsStream(nodesFile)))) {
+            try (BufferedReader brn = new BufferedReader(new InputStreamReader(Loader.class.getResourceAsStream(nodesFile)))) {
 
                 // Read through all nodes in the nodes file
                 String nodeLine;
@@ -142,7 +146,9 @@ public class Loader {
                     fhnw.wibb.best_first.Models.Node node = new fhnw.wibb.best_first.Models.Node(parts[0]);
 
                     // Getting an already existing node instead of creating a new instance
-                    if(nodeList.contains(node)) { node = nodeList.get(nodeList.indexOf(node));}
+                    if (nodeList.contains(node)) {
+                        node = nodeList.get(nodeList.indexOf(node));
+                    }
 
                     // Setting X and Y of each node
                     node.setX(Integer.parseInt(parts[1]));
@@ -182,10 +188,10 @@ public class Loader {
                 Edge edge = new Edge(node1, node2, length);
 
 
-                if(nodeList.contains(node1)) {
+                if (nodeList.contains(node1)) {
                     node1 = nodeList.get(nodeList.indexOf(node1));
                 }
-                if(nodeList.contains(node2)) {
+                if (nodeList.contains(node2)) {
                     node2 = nodeList.get(nodeList.indexOf(node2));
                 }
                 node1.getEdges().add(edge);
@@ -203,14 +209,14 @@ public class Loader {
             nodeList.addAll(nodeSet);
 
             // Add coordinates to all nodes in the list
-            try(BufferedReader brn = new BufferedReader(new InputStreamReader(Loader.class.getResourceAsStream(nodesFile)))) {
+            try (BufferedReader brn = new BufferedReader(new InputStreamReader(Loader.class.getResourceAsStream(nodesFile)))) {
 
                 // Read through all nodes in the nodes file
                 String nodeLine;
                 while ((nodeLine = brn.readLine()) != null) {
                     String[] parts = nodeLine.split(";");
                     fhnw.wibb.a_star.Models.Node node = new fhnw.wibb.a_star.Models.Node(parts[0]);
-                    if(nodeList.contains(node)) {
+                    if (nodeList.contains(node)) {
                         node = nodeList.get(nodeList.indexOf(node));
                     }
 
@@ -229,5 +235,64 @@ public class Loader {
         }
     }
 
+    // Dijkstra's loading method
+    public static ArrayList<fhnw.wibb.dijkstra.Models.Node> loadDijkstraNodes() {
+
+        String edgeFile = "/edges.csv";
+
+        // Create an empty ArrayList to store the nodes
+        ArrayList<fhnw.wibb.dijkstra.Models.Node> nodeList = new ArrayList<>();
+
+        // Open edge file
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(Loader.class.getResourceAsStream(edgeFile)))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+
+                // Split the line into two parts, representing the two nodes of the edge and create two node objects of the edge.
+                String[] parts = line.split(";");
+                fhnw.wibb.dijkstra.Models.Node node1 = new fhnw.wibb.dijkstra.Models.Node(parts[0]);
+                fhnw.wibb.dijkstra.Models.Node node2 = new fhnw.wibb.dijkstra.Models.Node(parts[1]);
+
+                // Check if either node already exists in the node list.
+                // If so, replace the node in the node list with the existing node.
+                if (nodeList.contains(node1)) {
+                    node1 = nodeList.get(nodeList.indexOf(node1));
+                }
+                if (nodeList.contains(node2)) {
+                    node2 = nodeList.get(nodeList.indexOf(node2));
+                }
+
+                // Add the two nodes to each other's neighbour lists.
+                node1.getNeighbours().add(node2);
+                node2.getNeighbours().add(node1);
+
+                // Add the two nodes to the node list
+                nodeList.add(node1);
+                nodeList.add(node2);
+
+            }
+
+            // Remove duplicates from node list
+            Set<fhnw.wibb.dijkstra.Models.Node> nodeSet = new HashSet<>(nodeList);
+
+            nodeList.clear();
+            nodeList.addAll(nodeSet);
+
+            // Iterate over the node list and add each node to the hash set
+            // Set initial distances for Dijkstra's algorithm
+            for (fhnw.wibb.dijkstra.Models.Node node : nodeList) {
+                node.setDistance(Integer.MAX_VALUE); // Initialize distances to infinity
+            }
+
+            // Clear the node list and add all the nodes from the hash set back to the list
+            // nodeList.clear();
+            // nodeList.addAll(nodeSet);
+
+            return nodeList;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }
