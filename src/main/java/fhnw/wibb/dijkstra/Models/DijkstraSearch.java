@@ -11,6 +11,7 @@ starting node to all other nodes in a weighted graph by iteratively selecting th
 distance and updating its neighbors' distances based on the current path. */
 public class DijkstraSearch {
 
+    // TODO: Use performance timers here
     public static ArrayList<Node> findShortestPath(Node start, Node destination) {
 
         // Initialize all nodes as unvisited
