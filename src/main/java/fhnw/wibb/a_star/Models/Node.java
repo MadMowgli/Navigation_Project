@@ -1,8 +1,10 @@
 package fhnw.wibb.a_star.Models;
 
+import fhnw.wibb.util.iNode;
+
 import java.util.ArrayList;
 
-public class Node {
+public class Node implements iNode {
 
     // Fields
     private String name;

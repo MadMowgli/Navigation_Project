@@ -2,11 +2,11 @@ package fhnw.wibb.a_star;
 
 import fhnw.wibb.a_star.Models.AStar;
 import fhnw.wibb.a_star.Models.Node;
-import fhnw.wibb.breadth_first.Models.BreadthFirst;
 import fhnw.wibb.util.Loader;
+import fhnw.wibb.util.Results;
+import fhnw.wibb.util.WatchDog;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Driver {
 
@@ -18,16 +18,17 @@ public class Driver {
         Node start = nodeList.get(0);
         Node end = nodeList.get(10);
 
+        // Create a watchdog object to time things
+        WatchDog watchDog = new WatchDog();
+
         // Search the shortest path using a*
-        List<Node> shortestPath = AStar.aStarSearch(start, end);
+        Results<Node> results = AStar.aStarSearch(start, end, watchDog);
         System.out.println("/////////////////////////////// BREADTH FIRST SEARCH RESULTS");
         System.out.println("///////// STARTING NODE: " + start.getName());
         System.out.println("///////// ENDING NODE: " + end.getName());
         System.out.println("///////// PATH: ");
-        shortestPath.stream().forEach(node -> System.out.println("//// " + node.getName() + " ->"));
+        results.getPath().forEach(node -> System.out.println("//// " + node.getName() + " ->"));
         System.out.println("///////////////////////////////");
-
-        System.out.println();
 
     }
 

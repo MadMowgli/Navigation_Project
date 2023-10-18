@@ -1,10 +1,15 @@
 package fhnw.wibb.a_star.Models;
 
+import fhnw.wibb.util.Results;
+import fhnw.wibb.util.WatchDog;
+
 import java.util.*;
 
 public class AStar {
 
-    public static ArrayList<Node> aStarSearch(Node start, Node destination) {
+    private static final String measurementName = "AStar";
+
+    public static Results<Node> aStarSearch(Node start, Node destination, WatchDog watchDog) {
 
         // Initialize stuff
         start.setgCost(0);
@@ -15,9 +20,11 @@ public class AStar {
         priorityQueue.add(start);
         HashSet<Node> visited = new HashSet<>();
 
+        // The algorithm really starts here, we start counting here
+        watchDog.startMeasurement(measurementName);
         while (!priorityQueue.isEmpty()) {
             Node currentNode = priorityQueue.poll();
-            if(currentNode.equals(destination)) return constructPath(currentNode);  // Return if we found the destination
+            if(currentNode.equals(destination)) return constructPath(currentNode, watchDog);  // Return if we found the destination
 
             visited.add(currentNode);   // Mark current node as visited
             for (Node neighbour : currentNode.getNeighbours()) {
@@ -58,7 +65,7 @@ public class AStar {
         return Math.sqrt(Math.pow((node1X - node2X), 2) + Math.pow((node1Y - node2Y), 2));
     }
 
-    private static ArrayList<Node> constructPath(Node destination) {
+    private static Results<Node> constructPath(Node destination, WatchDog watchDog) {
         ArrayList<Node> path = new ArrayList<>();   // This arraylist contains the nodes of the shortest path
         Node currentNode = destination;     // We "walk back" from the destination, following the parents path
 
@@ -68,7 +75,10 @@ public class AStar {
         }
         Collections.reverse(path); // Reverse the path to get the correct order from start to destination
 
-        return path;
+        // The algorithm stops here, we stop the measurement
+        watchDog.stopMeasurement(measurementName);
+
+        return new Results<>(path, watchDog);
     }
 
 }
