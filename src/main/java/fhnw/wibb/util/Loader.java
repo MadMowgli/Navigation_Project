@@ -275,14 +275,18 @@ public class Loader {
             // Remove duplicates from node list
             Set<fhnw.wibb.dijkstra.Models.Node> nodeSet = new HashSet<>(nodeList);
 
+            nodeList.clear();
+            nodeList.addAll(nodeSet);
+
             // Iterate over the node list and add each node to the hash set
+            // Set initial distances for Dijkstra's algorithm
             for (fhnw.wibb.dijkstra.Models.Node node : nodeList) {
-                nodeSet.add(node);
+                node.setDistance(Integer.MAX_VALUE); // Initialize distances to infinity
             }
 
             // Clear the node list and add all the nodes from the hash set back to the list
-            nodeList.clear();
-            nodeList.addAll(nodeSet);
+            // nodeList.clear();
+            // nodeList.addAll(nodeSet);
 
             return nodeList;
         } catch (IOException e) {
