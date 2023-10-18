@@ -3,8 +3,6 @@ package fhnw.wibb.dijkstra.Models;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-// Node.java
-
 public class Node implements Comparable<Node> {
 
     private String name;
@@ -21,6 +19,7 @@ public class Node implements Comparable<Node> {
         this.visited = false;
     }
 
+    // Getters & Setters
     public String getName() {
         return name;
     }
