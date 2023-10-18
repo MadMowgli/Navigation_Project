@@ -1,8 +1,10 @@
 package fhnw.wibb.best_first.Models;
 
+import fhnw.wibb.util.iNode;
+
 import java.util.ArrayList;
 
-public class Node {
+public class Node implements iNode {
 
     // Fields
     private String name;

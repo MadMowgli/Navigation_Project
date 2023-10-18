@@ -1,16 +1,24 @@
 package fhnw.wibb.best_first.Models;
 
+import fhnw.wibb.util.Results;
+import fhnw.wibb.util.WatchDog;
+
 import java.util.*;
 
 public class BestFirst {
 
-    public static ArrayList<Node> findShortestPath(Node start, Node destination) {
+    private final static String measurementName = "BestFirst";
+
+    public static Results<Node> findShortestPath(Node start, Node destination, WatchDog watchDog) {
 
         // Initialize stuff
         HashSet<Node> visited = new HashSet<>();
 
         // The priority queue will always have the node with the lowest heuristic at its head
         PriorityQueue<Node> priorityQueue = new PriorityQueue<>(Comparator.comparingDouble(Node::getHeuristicToDestination));
+
+        // The actual algorithm starts from here, we'll begin measurement from here
+        watchDog.startMeasurement(measurementName);
         priorityQueue.add(start);
 
         // Loop through each node in the priority queue
@@ -20,7 +28,7 @@ public class BestFirst {
             visited.add(currentNode);
 
             // If we found the destination node, construct the shortest path by following the path of parents
-            if(currentNode.equals(destination)) { return constructPath(currentNode); }
+            if(currentNode.equals(destination)) { return constructPath(currentNode, watchDog); }
 
             // Loop over each neighbor of the current node, calculate its heuristic, set the current node as parent and add it to the queue
             for(Node neighbour : currentNode.getNeighbours()) {
@@ -44,7 +52,7 @@ public class BestFirst {
         return Math.sqrt(Math.pow((node1X - node2X), 2) + Math.pow((node1Y - node2Y), 2));
     }
 
-    private static ArrayList<Node> constructPath(Node destination) {
+    private static Results<Node> constructPath(Node destination, WatchDog watchDog) {
         ArrayList<Node> path = new ArrayList<>();   // This arraylist contains the nodes of the shortest path
         Node currentNode = destination;     // We "walk back" from the destination, following the parents path
 
@@ -54,7 +62,10 @@ public class BestFirst {
         }
         Collections.reverse(path); // Reverse the path to get the correct order from start to destination
 
-        return path;
+        // The algorithm stops here
+        watchDog.stopMeasurement(measurementName);
+        return new Results<>(path, watchDog);
+
     }
 
 }
