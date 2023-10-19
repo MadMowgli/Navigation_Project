@@ -6,7 +6,8 @@ Your report should be complete. At the same time, please consider:
 Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless words
 
 ## Phase 1: Create map data
-- During this initial phase of the project, all of the group members collected data as explained in the guidelines. However, due to persistent issues with the consolidated data, we opted to utilize a smaller dataset, encompassing the cities or places: Lostorf, Basel, Luzern, Baden, Remigen, Turgi, Aarau, and Unterentfelden (approximately 186 nodes from 8 students).
+- During this initial phase of the project, all of the group members collected data as explained in the guidelines.
+- However, due to persistent issues with the consolidated data, we opted to utilize a smaller dataset, encompassing the cities or places: Lostorf, Basel, Luzern, Baden, Remigen, Turgi, Aarau, and Unterentfelden (approximately 186 nodes from 8 students).
 
 
 ## Phase 2: Test existing algorithms
@@ -25,5 +26,26 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 - The `Results` class serves as a data wrapper, containing the performance measurements (as a WatchDog object) as well as the shortest path from the respective algorithm.
   - The iNode interface explained above enabled us to use the Node representation of each algorithm, but still make it return a Results object containing the shortest Path (composed of Node objects of the respective algorithm) and the performance timer for each algorithm execution.
 
+### Results Depth First
+
+TODO
+
+### Results Breadth First
+
+TODO
+
+### Results Best First
+
+TODO
+
+### Results A*
+
+TODO
 
 ## Phase 3: New or adapted algorithm
+- We decided to implement Dijkstra's algorithm for the final phase of the project. Similar to the other algorithms in Phase 2, we followed a systematic approach. We created a method within the Loader Class specifically tailored to load the dataset required for the Dijkstra algorithm. 
+- All the testing procedures and inquiries conducted in Phase 2 were replicated using this newly implemented algorithm.
+
+### Results Dijkstra's algorithm
+
+TODO
