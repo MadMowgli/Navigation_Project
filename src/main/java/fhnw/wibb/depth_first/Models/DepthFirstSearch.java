@@ -23,29 +23,31 @@ public class DepthFirstSearch {
 
         // Initialize stuff
         Stack<ArrayList<Node>> stack = new Stack<>();
+        Set<Node> visited = new HashSet<>(); // Track visited nodes
+
         ArrayList<Node> initialPath = new ArrayList<>();
-
-        // Algorithm really starts running from here, so we start counting
-        watchDog.startTime();
-
-        initialPath.add(startNode);     // Add starting node to the path, since we begin from here
+        initialPath.add(startNode);
 
         stack.push(initialPath);
+        visited.add(startNode);
+
+        watchDog.startTime();
 
         while (!stack.isEmpty()) {
             ArrayList<Node> currentPath = stack.pop();
-            Node currentNode = currentPath.get(currentPath.size() - 1); // Grabs the last node of the current path
+            Node currentNode = currentPath.get(currentPath.size() - 1);
 
             if (currentNode.equals(destinationNode)) {
                 watchDog.stopTime();
-                return new Results(currentPath, watchDog); // Path found
+                return new Results(currentPath, watchDog);
             }
 
             for (Node neighbour : currentNode.getNeighbours()) {
-                if (!currentPath.contains(neighbour)) {
+                if (!visited.contains(neighbour)) {
                     ArrayList<Node> newPath = new ArrayList<>(currentPath);
                     newPath.add(neighbour);
                     stack.push(newPath);
+                    visited.add(neighbour); // Mark the node as visited
                 }
             }
         }
