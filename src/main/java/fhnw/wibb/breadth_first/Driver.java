@@ -56,8 +56,8 @@ public class Driver {
     ArrayList<Node> nodeList = Loader.loadBreadthFirstNodes();
     watchDog.snapShotFreeMemory("AfterLoadingData");
 
-    Node start = nodeList.get(110);
-    Node end = nodeList.get(120);
+    Node start = nodeList.get(0);
+    Node end = nodeList.get(30);
 
     //Search the shortest path using breadth first
     Results<Node> results = BreadthFirst.breadthFirstFind(start, end, watchDog);

@@ -28,104 +28,40 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 
 ### Questions
 
-1) Does the search work?
-2) How good is the result?
-3) How long does it take?
-4) How do the algorithms perform on graphs of varying sizes (small, large)?
-5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?
-6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?
-
-#### Results Depth First
-
-- Depth First Search (DFS): Traverses a graph by starting at an initial node and explores as far along each branch as possible before backtracking.
-
-    **1) Does the search work?**
-    - | Success Criteria                  | ok (&#x2714;) / failed (&#x2718;) |
-      |-----------------------------------|-----------------------------------|
-      | Successfully reaches goal node     | &#x2714;                          |
-
-    **2) How good is the result?**
-  -   | Test Case Description                                        | Input Data                                      | Output                                                                                                                                                   | 
-      |--------------------------------------------------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
-      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv (0 - 30)                          | NOT GOOD - **Example:** Result is not ideal, because algorithm goes from AArau to Turgi, to Remigen, back to Turgi, to Baden and subsequentlly to Aarau. |
-    
-  **3) How long does it take?**
-
-  **4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?**
-
-  **5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
-
-  **6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?**
+1) **Does the search work?**
+- | Algorithm     | ok (&#x2714;) / failed (&#x2718;) |Comment |
+  |---------------|-----------------------------------|--------|
+  | Depth First   | &#x2714;                          |        |
+  | Breadth First | &#x2714;                          |        |
+  | Best First    | &#x2714;                          |        |
+  | A*            | &#x2718;                          |Single runs work. However, if we test the algorithm with multiple runs (loop) it fails to find the destination nodes in most cases. We tried to figure out the root cause of this problem. However, we were not able to detect and solve it in time.        |
+  | Dijkstra's    | &#x2718;                       |Single runs work. However, if we test the algorithm with multiple runs (loop) it fails to find the destination nodes in most cases. We tried to figure out the root cause of this problem. However, we were not able to detect and solve it in time.        |
+2) **How good is the result?**
+-   | Algorithm     | Test                                                             | Input Data                  | Output                                                                                                                                                |
+    |---------------|------------------------------------------------------------------|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Depth First   | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv (Example: 0 - 30) | **BAD** - _Example:_ Result is not ideal, because algorithm goes from AArau to Turgi, to Remigen, back to Turgi, to Baden and subsequentlly to Aarau. |
+    | Breadth First | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv (Example: 0 - 30) | **GOOD** - _Example:_ The result is good. Compared to Depth First, the algorithm stays in Aarau when we choose the same start and destination.     |
+    | Best First    | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv (Example: 0 - 30) | **GOOD** - _Example:_ The result is good. Compared to Depth First, the algorithm stays in Aarau when we choose the same start and destination. |
+    | A*            | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv (Example: 0 - 30) | **GOOD** - _Example:_ The result is good. Compared to Depth First, the algorithm stays in Aarau when we choose the same start and destination. |
+    | Dijkstra's    | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv (Example: 0 - 30) | **MEDIUM** - _Example:_ The algorithm uses more steps to get to the destination node. However, it stays in Aarau.|
 
 
-#### Results Breadth First
+3) **How long does it take?**
+- ![measurements.png](src%2Fmain%2Fresources%2Fdocs%2Fmeasurements.png)
+- Conclusion from this analysis:
+  - We compared several runs for different algorithms and measured the time in nanoseconds.
+  - Therefore we used the same starting and ending nodes and tested those for the algorithms Depth First, Breadth First, Best First.
+  - The diagram indicates fast runs with a green bar, medium runs with a yellow bar, and slow runs with a red one.
+  - In 7/10 runs, the algorithm Best First had the fastest runtime.
+  - In 6/10 runs, the algorithm Depth First had the slowest runtime.
 
-- Breadth First Search (BFS): Explores a graph by visiting all neighbors of a node before moving on to the next level, effectively moving in a "wave" or breadth-first manner.
-
-    **1) Does the search work?**
-  - | Success Criteria                | ok (&#x2714;) / failed (&#x2718;)|
-    |---------------------------------|-----------|
-    | Successfully reaches goal node |  &#x2714;          |
-
-  **2) How good is the result?**
-  - | Test Case Description                         | Input Data                                        | Expected Output             | Actual Output |
-    |-----------------------------------------------|--------------------------------------------------|-----------------------------|---------------|
-    | Simple Graph                                  | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD]      | Shortest path from A to D   |               | |
-
-  **3) How long does it take?**
-  
-  **4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?**
-  
-  **5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
-
-  **6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?**
-
-
-#### Results Best First
-
-- Best First Search: Prioritizes nodes based on a heuristic function, typically the estimated distance to the goal, to guide the search towards the most promising areas first.
-
-  **1) Does the search work?**
-  - | Success Criteria                                           | ok (&#x2714;) / failed (&#x2718;)|
-    |------------------------------------------------------------|-----------|
-    | Successfully reaches goal node |  &#x2714;         |
-
-    **2) How good is the result?**
-  - | Test Case Description                       | Input Data                                           | Expected Output | Actual Output |
-    |---------------------------------------------|-----------------------------------------------------|----------------|---------------|
-    | Weighted graph with a heuristic function    | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD]; Heuristic: H(A) = 3, H(B) = 2, H(C) = 1, H(D) = 0 | Quickly reaches goal node |               | |
-
-  **3) How long does it take?**
-
-  **4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?**
-
-  **5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
-
-  **6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?**
-
-
-#### Results A*
-
-- A* Algorithm: Utilizes a combination of the cost to reach a node (g-value) and an estimate of the cost to reach the goal (h-value) to determine the most efficient path in weighted graphs or grids.
- 
-  **1) Does the search work?**
-  - | Success Criteria               | ok (&#x2714;) / failed (&#x2718;) | Comment                                                                                                                                                                                                                                              |
-    |--------------------------------|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Successfully reaches goal node | &#x2718;   | Single runs work. However, if we test the algorithm with multiple runs (loop) it fails to find the destination nodes in most cases. We tried to figure out the root cause of this problem. However, we were not able to detect and solve it in time. | 
-
-  **2) How good is the result?**
-
-  - | Test Case Description                      | Input Data                                           | Expected Output          | Actual Output |
-    |--------------------------------------------|-----------------------------------------------------|-------------------------|---------------|
-    | Simple Weighted Graph                       | Graph: [Nodes: A, B, C, D; Edges: AB(3), BC(2), CD(1)] | Shortest path from A to D |               |
-
-  **3) How long does it take?**
-  
-  **4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?**
-  
-  **5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
-  
-  **6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?**
+4) **How do the algorithms perform on graphs of varying sizes (small, large)?**
+   - TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! @JOEL THE GOAT MOWGLIIII 
+5) **Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
+   - **Comment:** When trying to measure memory consumption for each algorithm, we noticed that the memory stays almost unaffected during the runtime of each algorithm. This is due to not many objects being created during the algorithms itself.
+       What obviously has an influence on memory consumption, however, is the loading of the data. We have slightly different representations of a Node for each algorithm, but since these differences are minimal (only a few attributes), the differences in memory consumption are minimal as well. Hence, we decided to not graphically display these differences, nor to write any measurements down.
+6) **How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?**
+   - **Comment:** Each algorithm method contains exception handling for invalid inputs. At the beginning of each method, exception handling checks if any of the parameters of the method are null and if so, return a specific IllegalArgumentException with a defined message.
 
 
 ## Phase 3: New or adapted algorithm
@@ -133,27 +69,4 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 ### Decision
 - We decided to implement **Dijkstra's algorithm** for the final phase of the project. Similar to the other algorithms in Phase 2, we followed a systematic approach. We created a method within the Loader Class specifically tailored to load the dataset required for the Dijkstra algorithm. 
 - All the testing procedures and inquiries conducted in Phase 2 were replicated using this newly implemented algorithm.
-
-#### Results Dijkstra's algorithm
-
-- Dijkstra's Algorithm: Determines the shortest path in weighted graphs by iteratively selecting the node with the lowest accumulated cost from the source node, considering both the cost to reach the node and the edge weight.
-
-  **1) Does the search work?**
-  - | Success Criteria                     | ok (&#x2714;) / failed (&#x2718;)|      |
-    |--------------------------------------|-----------|------|
-    | Successfully reaches goal node | &#x2718;       | Single runs work. However, if we test the algorithm with multiple runs (loop) it fails to find the destination nodes in most cases. We tried to figure out the root cause of this problem. However, we were not able to detect and solve it in time.        |
-    
-  **2) How good is the result?**
-
-  - | Test Case Description                      | Input Data                                           | Expected Output          | Actual Output |
-    |--------------------------------------------|-----------------------------------------------------|-------------------------|---------------|
-    | Simple Weighted Graph                       | Graph: [Nodes: A, B, C, D; Edges: AB(3), BC(2), CD(1)] | Shortest path from A to D |               |
-
-  **3) How long does it take?**
-
-  **4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?**
-
-  **5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
-
-  **6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?**
-
+- Check the question overview for test results.

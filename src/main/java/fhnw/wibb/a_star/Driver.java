@@ -13,6 +13,7 @@ public class Driver {
     // This is the driver class for the a* package. Use it to run the algorithm.
     public static void main(String[] args) {
 
+        /*
         // Create a watchdog object to time things
         WatchDog watchDog = new WatchDog("AStar");
         watchDog.snapShotTotalMemory();     // See how much  memory we have at total
@@ -38,6 +39,26 @@ public class Driver {
             }
 
         }
+
+    } */
+
+        WatchDog watchDog = new WatchDog("AStar");
+
+        ArrayList<Node> nodeList = Loader.loadAStarNodes();
+        Node start = nodeList.get(0);
+        Node end = nodeList.get(30);
+
+        watchDog.snapShotFreeMemory("BeforeAlgorithm");
+        Results<Node> results = AStar.aStarSearch(start, end, watchDog);
+        watchDog.snapShotFreeMemory("AfterAlgorithm");
+
+
+        System.out.println("/////////////////////////////// A* SEARCH RESULTS");
+        System.out.println("///////// STARTING NODE: " + start.getName());
+        System.out.println("///////// ENDING NODE: " + end.getName());
+        System.out.println("///////// PATH: ");
+        results.getPath().forEach(node -> System.out.println("//// " + node.getName() + " ->"));
+        System.out.println("///////////////////////////////");
 
     }
 

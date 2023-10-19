@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Driver {
     public static void main(String[] args) {
 
+        /*
         // Create a watchdog object to time things
         WatchDog watchDog = new WatchDog("BestFirst");
         watchDog.snapShotTotalMemory();     // See how much  memory we have at total
@@ -38,6 +39,25 @@ public class Driver {
             }
         }
 
+
+    } */
+
+        ArrayList<Node> nodeList = Loader.loadBestFirstNodes();
+        WatchDog watchDog = new WatchDog("BestFirst");
+
+        Node start = nodeList.get(90);
+        Node end = nodeList.get(120);
+
+        watchDog.snapShotFreeMemory("BeforeAlgorithm");
+        Results<Node> results = BestFirst.findShortestPath(start, end, watchDog);
+        watchDog.snapShotFreeMemory("AfterAlgorithm");
+
+        System.out.println("/////////////////////////////// BEST FIRST SEARCH RESULTS");
+        System.out.println("///////// STARTING NODE: " + start.getName());
+        System.out.println("///////// ENDING NODE: " + end.getName());
+        System.out.println("///////// PATH: ");
+        results.getPath().forEach(node -> System.out.println("//// " + node.getName() + " ->"));
+        System.out.println("///////////////////////////////");
 
     }
 }
