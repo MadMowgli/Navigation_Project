@@ -48,9 +48,14 @@ public class BreadthFirst {
     private static Results<Node> constructPath(Node start, Node destination, WatchDog watchDog) {
         ArrayList<Node> path = new ArrayList<>();   // This arraylist contains the nodes of the shortest path
         Node currentNode = destination;     // We "walk back" from the destination, following the parents path
+        path.add(currentNode);
         start.setParent(null);      // Avoid circular data
         while (currentNode != null) {   // currentNode will be null when we end up at the start node, because this has no parent
             currentNode = currentNode.getParent();
+            if(currentNode != null) {
+                path.add(currentNode);
+            }
+
         }
         Collections.reverse(path); // Reverse the path to get the correct order from start to destination
 

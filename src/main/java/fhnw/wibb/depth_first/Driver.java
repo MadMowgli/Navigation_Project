@@ -19,7 +19,7 @@ public class Driver {
         watchDog.snapShotFreeMemory("AfterLoadingData");
 
 
-        for(int i = 1; i < 60; i++) {
+        for(int i = 1; i < 11; i++) {
 
             Node start = nodeList.get(i);
             Node end = nodeList.get(nodeList.size() - i);
@@ -30,7 +30,7 @@ public class Driver {
                 Results<Node> results = DepthFirstSearch.findPath(start, end, watchDog);
                 watchDog.snapShotFreeMemory("AfterAlgorithm");
 
-                results.writeToCSV("DepthFirst.csv");
+                results.writeToCSV("Results_DepthFirst.csv");
             } catch (Exception e) {
                 System.out.println("No path found between: " + start.getName() + " and " + end.getName());
             }

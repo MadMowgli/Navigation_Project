@@ -6,7 +6,6 @@ import fhnw.wibb.util.Loader;
 import fhnw.wibb.util.Results;
 import fhnw.wibb.util.WatchDog;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Driver {
@@ -22,7 +21,7 @@ public class Driver {
         watchDog.snapShotFreeMemory("AfterLoadingData");
 
 
-        for (int i = 1; i < 100; i++) {
+        for (int i = 1; i < 11; i++) {
             {
                 Node start = nodeList.get(i);
                 Node end = nodeList.get(nodeList.size() - i);
@@ -31,7 +30,7 @@ public class Driver {
                     watchDog.snapShotFreeMemory("BeforeAlgorithm");
                     Results<Node> results = BestFirst.findShortestPath(start, end, watchDog);
                     watchDog.snapShotFreeMemory("AfterAlgorithm");
-                    results.writeToCSV("BestFirst.csv");
+                    results.writeToCSV("Results_BestFirst.csv");
                 } catch (Exception e) {
                     System.out.println("No path found between: " + start.getName() + " and " + end.getName());
                 }

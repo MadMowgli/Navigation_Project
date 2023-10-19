@@ -34,18 +34,14 @@ public class Results<T extends iNode> {
         String filePath = Results.class.getClassLoader().getResource("").getPath() + fileName;
 
         try(FileWriter fileWriter = new FileWriter(filePath, true)) {
-            fileWriter.append("Measurement;Value\n"); // Write the header column
-            fileWriter.flush();
 
-            // Loop over each measurement taken in the watchdog and write it to the csv file
-            measurements.getAllMeasurements().forEach((key, value) -> {
-                try {
-                    fileWriter.append(key + ";" + value + "\n");
-                    fileWriter.flush();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
+            // CSV String format: AlgorithmName;StartNode;EndNode;Time;
+            String csvString = measurements.getAlgorithmName() + ";"
+                    + path.get(0).getName() + ";"
+                    + path.get(path.size() - 1).getName() + ";"
+                    + measurements.getAllMeasurements().get("Time_Total")
+                    + "\n";
+            fileWriter.write(csvString);
 
             // Close the fw
             fileWriter.flush();
