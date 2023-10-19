@@ -45,7 +45,7 @@ public class WatchDog {
     }
 
 
-    public double getMeasurement(String format) {
+    public double getTimeMeasurements(String format) {
         if(!measurements.containsKey(algorithmName)) { throw new RuntimeException("No Measurement found with key: " + algorithmName); }
         if(!acceptedFormats.contains(format)) { throw new IllegalArgumentException("Time format '"+format+"' not allowed! Use ns, ms or s"); }
         return switch (format) {
@@ -54,6 +54,10 @@ public class WatchDog {
             case "s" -> measurements.get(algorithmName).get("Time_Total") / 1000000000.0;
             default -> -1;
         };
+    }
+
+    public HashMap<String, Long> getAllMeasurements() {
+        return measurements.get(algorithmName);
     }
 
 }

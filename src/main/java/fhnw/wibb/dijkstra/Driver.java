@@ -28,6 +28,9 @@ public class Driver {
         // Find the shortest path using Dijkstra's algorithm
         Results<Node> results = DijkstraSearch.findShortestPath(start, destination, watchDog);
 
+        // Write results to csv
+        results.writeToCSV("Results_Dijkstra");
+
         // Print the shortest path
         System.out.println("/////////////////////////////// DIJKSTRA'S SHORTEST PATH RESULTS");
         System.out.println("///////// STARTING NODE: " + start.getName());

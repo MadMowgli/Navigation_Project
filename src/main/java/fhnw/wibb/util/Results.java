@@ -1,6 +1,9 @@
 package fhnw.wibb.util;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class Results<T extends iNode> {
 
@@ -24,6 +27,33 @@ public class Results<T extends iNode> {
 
     public WatchDog getMeasurements() {
         return measurements;
+    }
+
+    public void writeToCSV(String fileName) {
+
+        String filePath = Results.class.getClassLoader().getResource("").getPath() + fileName;
+        System.out.println(filePath);
+
+        try(FileWriter fileWriter = new FileWriter(filePath)) {
+            fileWriter.append("Measurement;Value\n"); // Write the header column
+            fileWriter.flush();
+
+            // Loop over each measurement taken in the watchdog and write it to the csv file
+            measurements.getAllMeasurements().forEach((key, value) -> {
+                try {
+                    fileWriter.append(key + ";" + value + "\n");
+                    fileWriter.flush();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+            // Close the fw
+            fileWriter.flush();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 }
