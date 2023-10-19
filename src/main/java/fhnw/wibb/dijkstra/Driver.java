@@ -23,7 +23,7 @@ public class Driver {
 
 
         Node start = nodeList.get(0);
-        Node destination = nodeList.get(12);
+        Node destination = nodeList.get(10);
 
         // Find the shortest path using Dijkstra's algorithm
         Results<Node> results = DijkstraSearch.findShortestPath(start, destination, watchDog);

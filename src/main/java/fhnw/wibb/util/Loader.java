@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Loader {
 
@@ -47,6 +48,9 @@ public class Loader {
             Set<Node> nodeSet = new HashSet<>(nodeList);
             nodeList.clear();
             nodeList.addAll(nodeSet);
+            nodeList = nodeList.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
 
             return nodeList;
         } catch (IOException e) {
@@ -87,6 +91,9 @@ public class Loader {
             Set<fhnw.wibb.breadth_first.Models.Node> nodeSet = new HashSet<>(nodeList);
             nodeList.clear();
             nodeList.addAll(nodeSet);
+            nodeList = nodeList.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
 
             return nodeList;
         } catch (IOException e) {
@@ -134,6 +141,7 @@ public class Loader {
             nodeList.clear();
             nodeList.addAll(nodeSet);
 
+
             // Add coordinates to all nodes in the list
             try (BufferedReader brn = new BufferedReader(new InputStreamReader(Loader.class.getResourceAsStream(nodesFile)))) {
 
@@ -158,7 +166,9 @@ public class Loader {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+            nodeList = nodeList.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
             return nodeList;
         } catch (IOException e) {
             e.printStackTrace();
@@ -227,7 +237,9 @@ public class Loader {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+            nodeList = nodeList.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
             return nodeList;
         } catch (IOException e) {
             e.printStackTrace();
@@ -277,6 +289,7 @@ public class Loader {
 
             nodeList.clear();
             nodeList.addAll(nodeSet);
+            nodeList.stream().sorted();
 
             // Iterate over the node list and add each node to the hash set
             // Set initial distances for Dijkstra's algorithm
@@ -287,7 +300,9 @@ public class Loader {
             // Clear the node list and add all the nodes from the hash set back to the list
             // nodeList.clear();
             // nodeList.addAll(nodeSet);
-
+            nodeList = nodeList.stream()
+                    .sorted()
+                    .collect(Collectors.toCollection(ArrayList::new));
             return nodeList;
         } catch (IOException e) {
             e.printStackTrace();
