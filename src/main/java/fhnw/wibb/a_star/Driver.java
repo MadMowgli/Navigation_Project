@@ -19,7 +19,7 @@ public class Driver {
         Node end = nodeList.get(10);
 
         // Create a watchdog object to time things
-        WatchDog watchDog = new WatchDog();
+        WatchDog watchDog = new WatchDog("AStar");
 
         // Search the shortest path using a*
         Results<Node> results = AStar.aStarSearch(start, end, watchDog);

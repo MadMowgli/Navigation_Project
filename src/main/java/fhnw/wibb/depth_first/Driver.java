@@ -15,7 +15,7 @@ public class Driver {
         Node start = nodeList.get(0);
         Node end = nodeList.get(10);
 
-        WatchDog watchDog = new WatchDog();
+        WatchDog watchDog = new WatchDog("DepthFirst");
         Results<Node> results = DepthFirstSearch.findPath(start, end, watchDog);
 
         System.out.println("/////////////////////////////// DEPTH FIRST SEARCH RESULTS");

@@ -25,7 +25,7 @@ public class Driver {
         Node end = nodeList.get(10);
 
         // Create a watchdog object to time things
-        WatchDog watchDog = new WatchDog();
+        WatchDog watchDog = new WatchDog("BreadthFirst");
 
         // Search the shortest path using breadth first
         Results<Node> results = BreadthFirst.breadthFirstFind(start, end, watchDog);

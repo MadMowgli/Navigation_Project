@@ -21,7 +21,7 @@ public class AStar {
         HashSet<Node> visited = new HashSet<>();
 
         // The algorithm really starts here, we start counting here
-        watchDog.startMeasurement(measurementName);
+        watchDog.startTime();
         while (!priorityQueue.isEmpty()) {
             Node currentNode = priorityQueue.poll();
             if(currentNode.equals(destination)) return constructPath(currentNode, watchDog);  // Return if we found the destination
@@ -76,7 +76,7 @@ public class AStar {
         Collections.reverse(path); // Reverse the path to get the correct order from start to destination
 
         // The algorithm stops here, we stop the measurement
-        watchDog.stopMeasurement(measurementName);
+        watchDog.stopTime();
 
         return new Results<>(path, watchDog);
     }

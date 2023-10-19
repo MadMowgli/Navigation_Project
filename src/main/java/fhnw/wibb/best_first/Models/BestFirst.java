@@ -18,7 +18,7 @@ public class BestFirst {
         PriorityQueue<Node> priorityQueue = new PriorityQueue<>(Comparator.comparingDouble(Node::getHeuristicToDestination));
 
         // The actual algorithm starts from here, we'll begin measurement from here
-        watchDog.startMeasurement(measurementName);
+        watchDog.startTime();
         priorityQueue.add(start);
 
         // Loop through each node in the priority queue
@@ -63,7 +63,7 @@ public class BestFirst {
         Collections.reverse(path); // Reverse the path to get the correct order from start to destination
 
         // The algorithm stops here
-        watchDog.stopMeasurement(measurementName);
+        watchDog.stopTime();
         return new Results<>(path, watchDog);
 
     }

@@ -17,7 +17,7 @@ public class BreadthFirst {
         HashSet<Node> visited = new HashSet<>();    // Contains nodes that we have visited already
 
         // Initial step: Add starting node to queue
-        watchDog.startMeasurement(measurementName);
+        watchDog.startTime();
         queue.add(start);
 
         // Dequeue a node, add it to the visited set, add all neighbors to the queue
@@ -46,7 +46,7 @@ public class BreadthFirst {
         Collections.reverse(path); // Reverse the path to get the correct order from start to destination
 
         // Algorithm stops working here
-        watchDog.stopMeasurement(measurementName);
+        watchDog.stopTime();
 
         return new Results<>(path, watchDog);
     }

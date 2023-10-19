@@ -16,7 +16,7 @@ public class DepthFirstSearch {
         ArrayList<Node> initialPath = new ArrayList<>();
 
         // Algorithm really starts running from here, so we start counting
-        watchDog.startMeasurement(measurementName);
+        watchDog.startTime();
 
         initialPath.add(startNode);     // Add starting node to the path, since we begin from here
 
@@ -27,7 +27,7 @@ public class DepthFirstSearch {
             Node currentNode = currentPath.get(currentPath.size() - 1); // Grabs the last node of the current path
 
             if (currentNode.equals(destinationNode)) {
-                watchDog.stopMeasurement(measurementName);
+                watchDog.stopTime();
                 return new Results(currentPath, watchDog); // Path found
             }
 

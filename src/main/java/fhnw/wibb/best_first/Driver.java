@@ -18,7 +18,7 @@ public class Driver {
         Node destination = nodeList.get(10);
 
         // Create a watchdog object to time things
-        WatchDog watchDog = new WatchDog();
+        WatchDog watchDog = new WatchDog("BestFirst");
 
         Results<Node> results = BestFirst.findShortestPath(start, destination, watchDog);
         System.out.println("/////////////////////////////// BREADTH FIRST SEARCH RESULTS");
