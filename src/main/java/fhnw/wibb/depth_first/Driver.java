@@ -31,7 +31,7 @@ public class Driver {
                 Results<Node> results = DepthFirstSearch.findPath(start, end, watchDog);
                 watchDog.snapShotFreeMemory("AfterAlgorithm");
 
-                results.writeToCSV("DepthFirst.csv");
+                results.writeToCSV("Results_DepthFirst.csv");
             } catch (Exception e) {
                 System.out.println("No path found between: " + start.getName() + " and " + end.getName());
             }

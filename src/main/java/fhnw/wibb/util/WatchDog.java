@@ -60,4 +60,7 @@ public class WatchDog {
         return measurements.get(algorithmName);
     }
 
+    public String getAlgorithmName() {
+        return algorithmName;
+    }
 }

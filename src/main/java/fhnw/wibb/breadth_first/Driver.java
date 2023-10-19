@@ -1,6 +1,5 @@
 package fhnw.wibb.breadth_first;
 
-import fhnw.wibb.a_star.Models.AStar;
 import fhnw.wibb.breadth_first.Models.BreadthFirst;
 import fhnw.wibb.breadth_first.Models.Node;
 import fhnw.wibb.util.Loader;
@@ -8,7 +7,6 @@ import fhnw.wibb.util.Results;
 import fhnw.wibb.util.WatchDog;
 
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Driver {
 
@@ -39,7 +37,7 @@ public class Driver {
                 Results<Node> results = BreadthFirst.breadthFirstFind(start, end, watchDog);
                 watchDog.snapShotFreeMemory("AfterAlgorithm");
 
-                results.writeToCSV("BreadthFirst.csv");
+                results.writeToCSV("Results_BreadthFirst.csv");
             } catch (Exception e) {
                 System.out.println("No path found between: " + start.getName() + " and " + end.getName());
             }
@@ -74,4 +72,5 @@ public class Driver {
       System.out.println("///////////////////////////////");
 
     }
+
 }
