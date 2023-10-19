@@ -16,8 +16,8 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 - All of us grasped the concepts of the Depth-First and the Breadth-First pretty fast. To understand the concepts behind the Best-First and the A* algorithm, some more time was required.
 
 ### Timing, Results and Util
-- The Loader class defines several static methods (static since we're only really exposing functionality) which are used to load the csv files and transform the data into algorithm-specific class representations of nodes (and maybe edges, depending on the algorithm).
-- The WatchDog class serves as an utility class, which enables the user to take measurements using the `.startMeasurement()` and `.stopMeasurement()` methods.
+- The `Loader` class defines several static methods (static since we're only really exposing functionality) which are used to load the csv files and transform the data into algorithm-specific class representations of nodes (and maybe edges, depending on the algorithm).
+- The `WatchDog` class serves as an utility class, which enables the user to take measurements using the `.startMeasurement()` and `.stopMeasurement()` methods.
   - Measurements are taken using the `System.nanoTime()` method.
   - Measurements can be retrieved in either nanoseconds, milliseconds or seconds.
 - The `iNode` serves as a basic contract (interface), which each algorithm-specific `Node` implements.
