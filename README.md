@@ -48,8 +48,8 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
       | Backtracks and explores all paths  |           |
 
     **2) How good is the result?**
-  - | Test Case Description                       | Input Data                                        | Expected Output        | Actual Output |
-            |---------------------------------------------|--------------------------------------------------|-----------------------|---------------|
+  -   | Test Case Description                       | Input Data                                        | Expected Output        | Actual Output |
+      |---------------------------------------------|--------------------------------------------------|-----------------------|---------------|
       | Simple Graph                                | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD]      | Reachable node D      |               |
       | Disconnected Graph                          | Graph: [Nodes: A, B, C; Edges: AB, BC]             | Unreachable node X    |               |
       | Circular Loop                               | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD, DA]  | All nodes in loop      |               |
