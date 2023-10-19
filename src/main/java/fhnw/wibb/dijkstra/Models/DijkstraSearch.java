@@ -46,7 +46,7 @@ public class DijkstraSearch {
 
             // If the current node is the destination node, return the shortest path
             if (currentNode == destination) {
-                return getShortestPath(currentNode, watchDog);
+                return getShortestPath(start, currentNode, watchDog);
             }
 
             // Mark the current node as visited
@@ -69,10 +69,11 @@ public class DijkstraSearch {
         return null;
     }
 
-    private static Results<Node> getShortestPath(Node currentNode, WatchDog watchDog) {
+    private static Results<Node> getShortestPath(Node start, Node currentNode, WatchDog watchDog) {
 
         // Create a stack to store nodes in reverse order of the shortest path
         Stack<Node> shortestPath = new Stack<>();
+        start.setParent(null);
 
         // Traverse the path by following parent pointers until reaching the start node
         while (currentNode != null) {
@@ -91,30 +92,6 @@ public class DijkstraSearch {
         // Return the list representing the shortest path
         watchDog.stopTime();
         return new Results<>(shortestPathList, watchDog);
-    }
-
-    public static ArrayList<Node> getNodesList(Node start, Node destination, ArrayList<Node> nodesList) {
-
-        // Shuffle the input nodesList to introduce randomness for scenario variation
-        Collections.shuffle(nodesList);
-
-        // Create a new random number generator to simulate different scenarios
-        Random rand = new Random();
-
-        // Generate a random path size between 3 and 6 for testing robustness and variability
-        int pathSize = rand.nextInt((6 - 3) + 1) + 3;
-
-        // Create a new ArrayList called nList containing a sublist of nodes from nodesList with a random size
-        ArrayList<Node> nList =  new ArrayList<Node>(nodesList.subList(0, pathSize));
-
-        // Add the start node at the beginning of the list for simulation purposes
-        nList.add(0, start);
-
-        // Add the destination node at the end of the list to avoid predictability
-        nList.add(nList.size(), destination);
-
-        // Return the modified list containing the start, random nodes, and destination for testing and simulation
-        return nList;
     }
 
 }

@@ -38,7 +38,7 @@ public class BestFirst {
             visited.add(currentNode);
 
             // If we found the destination node, construct the shortest path by following the path of parents
-            if(currentNode.equals(destination)) { return constructPath(currentNode, watchDog); }
+            if(currentNode.equals(destination)) { return constructPath(start, currentNode, watchDog); }
 
             // Loop over each neighbor of the current node, calculate its heuristic, set the current node as parent and add it to the queue
             for(Node neighbour : currentNode.getNeighbours()) {
@@ -62,10 +62,10 @@ public class BestFirst {
         return Math.sqrt(Math.pow((node1X - node2X), 2) + Math.pow((node1Y - node2Y), 2));
     }
 
-    private static Results<Node> constructPath(Node destination, WatchDog watchDog) {
+    private static Results<Node> constructPath(Node start, Node destination, WatchDog watchDog) {
         ArrayList<Node> path = new ArrayList<>();   // This arraylist contains the nodes of the shortest path
         Node currentNode = destination;     // We "walk back" from the destination, following the parents path
-
+        start.setParent(null);
         while (currentNode != null) {   // currentNode will be null when we end up at the start node, because this has no parent
             path.add(currentNode);
             currentNode = currentNode.getParent();

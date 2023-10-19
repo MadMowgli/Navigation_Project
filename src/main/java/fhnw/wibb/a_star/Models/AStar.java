@@ -43,7 +43,7 @@ public class AStar {
         while (!priorityQueue.isEmpty()) {
             Node currentNode = priorityQueue.poll();
             if (currentNode.equals(destination))
-                return constructPath(currentNode, watchDog);  // Return if we found the destination
+                return constructPath(start, currentNode, watchDog);  // Return if we found the destination
 
             visited.add(currentNode);   // Mark current node as visited
 //            watchDog.snapShotFreeMemory("AfterAddVisited");
@@ -88,10 +88,10 @@ public class AStar {
         return Math.sqrt(Math.pow((node1X - node2X), 2) + Math.pow((node1Y - node2Y), 2));
     }
 
-    private static Results<Node> constructPath(Node destination, WatchDog watchDog) {
+    private static Results<Node> constructPath(Node start, Node destination, WatchDog watchDog) {
         ArrayList<Node> path = new ArrayList<>();   // This arraylist contains the nodes of the shortest path
         Node currentNode = destination;     // We "walk back" from the destination, following the parents path
-
+        start.setParent(null);      // We don't want to walk in circles
         while (currentNode != null) {   // currentNode will be null when we end up at the start node, because this has no parent
             path.add(currentNode);
             currentNode = currentNode.getParent();
