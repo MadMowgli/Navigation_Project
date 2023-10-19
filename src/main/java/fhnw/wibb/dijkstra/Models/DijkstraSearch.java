@@ -1,10 +1,9 @@
 package fhnw.wibb.dijkstra.Models;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.PriorityQueue;
-import java.util.Random;
-import java.util.Stack;
+import fhnw.wibb.util.Results;
+import fhnw.wibb.util.WatchDog;
+
+import java.util.*;
 
 /* Dijkstra's algorithm is a greedy graph traversal algorithm that finds the shortest path from a designated
 starting node to all other nodes in a weighted graph by iteratively selecting the node with the smallest tentative
@@ -12,7 +11,7 @@ distance and updating its neighbors' distances based on the current path. */
 public class DijkstraSearch {
 
     // TODO: Use performance timers here
-    public static ArrayList<Node> findShortestPath(Node start, Node destination) {
+    public static Results<Node> findShortestPath(Node start, Node destination, WatchDog watchDog) {
 
         if(start == null){
             throw new IllegalArgumentException("Invalid start node argument. Start node musn't be null.");
@@ -20,9 +19,9 @@ public class DijkstraSearch {
         if(destination == null){
             throw new IllegalArgumentException("Invalid destination node argument. Destination node musn't be null.");
         }
-        //if(watchDog == null){
-            //throw new IllegalArgumentException("Invalid watchDog argument. WatchDog musn't be null.");
-        //}
+        if(watchDog == null){
+            throw new IllegalArgumentException("Invalid watchDog argument. WatchDog musn't be null.");
+        }
 
         // Initialize all nodes as unvisited
         ArrayList<Node> neighbours = start.getNeighbours();
@@ -34,7 +33,10 @@ public class DijkstraSearch {
         start.setDistance(0);
 
         // Create a priority queue to store the nodes to be visited
-        PriorityQueue<Node> queue = new PriorityQueue<>();
+        PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(Node::getWeight));
+
+        // Algorithm starts running here, so we start counting
+        watchDog.startTime();
         queue.add(start);
 
         while (!queue.isEmpty()) {
@@ -44,7 +46,7 @@ public class DijkstraSearch {
 
             // If the current node is the destination node, return the shortest path
             if (currentNode == destination) {
-                return getShortestPath(currentNode);
+                return getShortestPath(currentNode, watchDog);
             }
 
             // Mark the current node as visited
@@ -64,10 +66,10 @@ public class DijkstraSearch {
         }
 
         // If the destination node is not reachable, return an empty list
-        return new ArrayList<>();
+        return null;
     }
 
-    private static ArrayList<Node> getShortestPath(Node currentNode) {
+    private static Results<Node> getShortestPath(Node currentNode, WatchDog watchDog) {
 
         // Create a stack to store nodes in reverse order of the shortest path
         Stack<Node> shortestPath = new Stack<>();
@@ -87,10 +89,11 @@ public class DijkstraSearch {
         }
 
         // Return the list representing the shortest path
-        return shortestPathList;
+        watchDog.stopTime();
+        return new Results<>(shortestPathList, watchDog);
     }
 
-    public static ArrayList<Node> getNodesList(fhnw.wibb.dijkstra.Models.Node start, fhnw.wibb.dijkstra.Models.Node destination, ArrayList<Node> nodesList) {
+    public static ArrayList<Node> getNodesList(Node start, Node destination, ArrayList<Node> nodesList) {
 
         // Shuffle the input nodesList to introduce randomness for scenario variation
         Collections.shuffle(nodesList);

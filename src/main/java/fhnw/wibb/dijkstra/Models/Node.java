@@ -1,9 +1,11 @@
 package fhnw.wibb.dijkstra.Models;
 
+import fhnw.wibb.util.iNode;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Node implements Comparable<Node> {
+public class Node implements iNode {
 
     private String name;
     private ArrayList<Node> neighbours;
@@ -74,8 +76,12 @@ public class Node implements Comparable<Node> {
     }
 
     @Override
-    public int compareTo(Node otherNode) {
-        return Integer.compare(this.weight, otherNode.weight);
+    public boolean equals(Object obj) {
+        if(obj == null) { return false; }
+        if(obj.getClass() != this.getClass()) { return false; }
+
+        Node comprarer = (Node) obj;
+        return this.name.equals(comprarer.name);
     }
 
 }
