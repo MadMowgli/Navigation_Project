@@ -29,10 +29,9 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 ### Questions
 
 1) Does the search work?
-2) How long does it take?
-3) How good is the result?
-
-4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?
+2) How good is the result?
+3) How long does it take?
+4) How do the algorithms perform on graphs of varying sizes (small, large)?
 5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?
 6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?
 
@@ -41,15 +40,14 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 - Depth First Search (DFS): Traverses a graph by starting at an initial node and explores as far along each branch as possible before backtracking.
 
     **1) Does the search work?**
-    - | Success Criteria                  | ok/failed |
-      |-----------------------------------|-----------|
-      | Successfully reaches goal node     |           |
+    - | Success Criteria                  | ok (&#x2714;) / failed (&#x2718;) |
+      |-----------------------------------|-----------------------------------|
+      | Successfully reaches goal node     | &#x2714;                          |
 
     **2) How good is the result?**
-  -   | Test Case Description | Input Data                                        | Expected Output        | Actual Output |
-      |-----------------------|--------------------------------------------------|-----------------------|---------------|
-      | Simple Graph          | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD]      | Reachable node D      |               |
-      | No circular Loop      | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD, DA]  | All nodes in loop      |               |
+  -   | Test Case Description                                        | Input Data                                      | Output                                                                                                                                                   | 
+      |--------------------------------------------------------------|-------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv (0 - 30)                          | NOT GOOD - **Example:** Result is not ideal, because algorithm goes from AArau to Turgi, to Remigen, back to Turgi, to Baden and subsequentlly to Aarau. |
     
   **3) How long does it take?**
 
@@ -65,9 +63,9 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 - Breadth First Search (BFS): Explores a graph by visiting all neighbors of a node before moving on to the next level, effectively moving in a "wave" or breadth-first manner.
 
     **1) Does the search work?**
-  - | Success Criteria                | ok/failed |
+  - | Success Criteria                | ok (&#x2714;) / failed (&#x2718;)|
     |---------------------------------|-----------|
-    | Finds shortest path between nodes|           |
+    | Successfully reaches goal node |  &#x2714;          |
 
   **2) How good is the result?**
   - | Test Case Description                         | Input Data                                        | Expected Output             | Actual Output |
@@ -88,9 +86,9 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 - Best First Search: Prioritizes nodes based on a heuristic function, typically the estimated distance to the goal, to guide the search towards the most promising areas first.
 
   **1) Does the search work?**
-  - | Success Criteria                                           | ok/failed |
+  - | Success Criteria                                           | ok (&#x2714;) / failed (&#x2718;)|
     |------------------------------------------------------------|-----------|
-    | Reaches the goal node quickly based on heuristic evaluation |           |
+    | Successfully reaches goal node |  &#x2714;         |
 
     **2) How good is the result?**
   - | Test Case Description                       | Input Data                                           | Expected Output | Actual Output |
@@ -111,9 +109,9 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 - A* Algorithm: Utilizes a combination of the cost to reach a node (g-value) and an estimate of the cost to reach the goal (h-value) to determine the most efficient path in weighted graphs or grids.
  
   **1) Does the search work?**
-  - | Success Criteria                            | ok/failed |
-    |---------------------------------------------|-----------|
-    | Finds the shortest path between two nodes   |           |
+  - | Success Criteria               | ok (&#x2714;) / failed (&#x2718;) | Comment                                                                                                                                                                                                                                              |
+    |--------------------------------|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Successfully reaches goal node | &#x2718;   | Single runs work. However, if we test the algorithm with multiple runs (loop) it fails to find the destination nodes in most cases. We tried to figure out the root cause of this problem. However, we were not able to detect and solve it in time. | 
 
   **2) How good is the result?**
 
@@ -141,9 +139,9 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 - Dijkstra's Algorithm: Determines the shortest path in weighted graphs by iteratively selecting the node with the lowest accumulated cost from the source node, considering both the cost to reach the node and the edge weight.
 
   **1) Does the search work?**
-  - | Success Criteria                     | ok/failed |
-    |--------------------------------------|-----------|
-    | Finds the shortest path between nodes |           |
+  - | Success Criteria                     | ok (&#x2714;) / failed (&#x2718;)|      |
+    |--------------------------------------|-----------|------|
+    | Successfully reaches goal node | &#x2718;       | Single runs work. However, if we test the algorithm with multiple runs (loop) it fails to find the destination nodes in most cases. We tried to figure out the root cause of this problem. However, we were not able to detect and solve it in time.        |
     
   **2) How good is the result?**
 

@@ -21,7 +21,7 @@ public class Driver {
         ArrayList<Node> nodeList = Loader.loadDijkstraNodes();
         watchDog.snapShotFreeMemory("AfterLoadingData");
 
-        for(int i = 1; i < 60; i++) {
+        for(int i = 1; i < 10; i++) {
 
             Node start = nodeList.get(i);
             Node end = nodeList.get(nodeList.size() - i);

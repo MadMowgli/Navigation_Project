@@ -15,6 +15,7 @@ public class Driver {
     // This is the driver class for the breadth first package. Use it to run the algorithm.
     public static void main(String[] args) {
 
+        /*
         // Create a watchdog object to time things
         WatchDog watchDog = new WatchDog("BreadthFirst");
         watchDog.snapShotTotalMemory();     // See how much  memory we have at total
@@ -24,7 +25,7 @@ public class Driver {
         ArrayList<Node> nodeList = Loader.loadBreadthFirstNodes();
         watchDog.snapShotFreeMemory("AfterLoadingData");
 
-        for(int i = 1; i < 100; i++) {
+        for(int i = 1; i < 10; i++) {
 
             Node start = nodeList.get(i);
             Node end = nodeList.get(nodeList.size() - i);
@@ -46,6 +47,31 @@ public class Driver {
         }
 
 
-    }
+    } */
 
+    // Create a watchdog object to time things
+    WatchDog watchDog = new WatchDog("BreadthFirst");
+    watchDog.snapShotTotalMemory(); // See how much  memory we have at total
+
+    // Load data from the csv files
+    watchDog.snapShotFreeMemory("BeforeLoadingData");
+    ArrayList<Node> nodeList = Loader.loadBreadthFirstNodes();
+    watchDog.snapShotFreeMemory("AfterLoadingData");
+
+    Node start = nodeList.get(110);
+    Node end = nodeList.get(120);
+
+    //Search the shortest path using breadth first
+    Results<Node> results = BreadthFirst.breadthFirstFind(start, end, watchDog);
+    System.out.println("/////////////////////////////// BREADTH FIRST SEARCH RESULTS");
+      System.out.println("///////// STARTING NODE: "+start.getName());
+      System.out.println("///////// ENDING NODE: "+end.getName());
+      System.out.println("///////// PATH: ");
+      assert results !=null;
+      results.getPath().
+
+    forEach(node ->System.out.println("//// "+node.getName()+" ->"));
+      System.out.println("///////////////////////////////");
+
+    }
 }
