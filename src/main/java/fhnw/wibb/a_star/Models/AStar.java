@@ -12,7 +12,7 @@ public class AStar {
     public static Results<Node> aStarSearch(Node start, Node destination, WatchDog watchDog) {
 
         // Start initial memory measurement
-        watchDog.snapShotTotalMemory();
+//        watchDog.snapShotTotalMemory();
 
         if(start == null){
             throw new IllegalArgumentException("Invalid start node argument. Start node musn't be null.");
@@ -35,24 +35,24 @@ public class AStar {
         HashSet<Node> visited = new HashSet<>();
 
         // Measure memory after initialization
-        watchDog.snapShotFreeMemory("AfterInit");
+//        watchDog.snapShotFreeMemory("AfterInit");
 
         // The algorithm really starts here, we start counting here
         watchDog.startTime();
-        watchDog.snapShotFreeMemory("AlgorithmStart");
+//        watchDog.snapShotFreeMemory("AlgorithmStart");
         while (!priorityQueue.isEmpty()) {
             Node currentNode = priorityQueue.poll();
             if (currentNode.equals(destination))
                 return constructPath(currentNode, watchDog);  // Return if we found the destination
 
             visited.add(currentNode);   // Mark current node as visited
-            watchDog.snapShotFreeMemory("AfterAddVisited");
+//            watchDog.snapShotFreeMemory("AfterAddVisited");
             for (Node neighbour : currentNode.getNeighbours()) {
                 if (visited.contains(neighbour)) continue; // Skip if we already visited this neighbour
-                watchDog.snapShotFreeMemory("InNeighbourLoop");
+//                watchDog.snapShotFreeMemory("InNeighbourLoop");
                 // Get the gCost from the current node to the neighbour by looking at the respective edge
                 for (Edge edge : currentNode.getEdges()) {
-                    watchDog.snapShotFreeMemory("InEdgeLoop");
+//                    watchDog.snapShotFreeMemory("InEdgeLoop");
                     if (edge.getA().equals(neighbour) || edge.getB().equals(neighbour)) {
                         double tentative_g = currentNode.getgCost() + edge.getDistance();
 
@@ -67,7 +67,7 @@ public class AStar {
                                 priorityQueue.remove(neighbour);
                             }
                             priorityQueue.add(neighbour);
-                            watchDog.snapShotFreeMemory("AfterAddPriorityQ");
+//                            watchDog.snapShotFreeMemory("AfterAddPriorityQ");
                         }
                     }
                 }
