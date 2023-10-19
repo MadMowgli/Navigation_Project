@@ -4,7 +4,7 @@ import fhnw.wibb.util.iNode;
 
 import java.util.ArrayList;
 
-public class Node implements iNode {
+public class Node implements iNode, Comparable<Node> {
 
     // Fields
     private String name;
@@ -106,5 +106,10 @@ public class Node implements iNode {
 
        Node comparer = (Node) obj;
         return this.name.equals(comparer.getName());
+    }
+
+    @Override
+    public int compareTo(Node otherNode) {
+        return this.name.compareTo(otherNode.name);
     }
 }
