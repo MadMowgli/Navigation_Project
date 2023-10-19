@@ -26,21 +26,84 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 - The `Results` class serves as a data wrapper, containing the performance measurements (as a WatchDog object) as well as the shortest path from the respective algorithm.
   - The iNode interface explained above enabled us to use the Node representation of each algorithm, but still make it return a Results object containing the shortest Path (composed of Node objects of the respective algorithm) and the performance timer for each algorithm execution.
 
+### Questions
+
+1) Does the search work?
+2) How long does it take?
+3) How good is the result?
+
+4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?
+5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?
+6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?
+
 #### Results Depth First
 
-TODO
+- Depth First Search (DFS): Traverses a graph by starting at an initial node and explores as far along each branch as possible before backtracking.
+  
+**1) Does the search work?**
+  
+**2) How long does it take?**
+
+**3) How good is the result?**
+
+
+**4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?**
+
+**5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
+
+**6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?**
+
 
 #### Results Breadth First
 
-TODO
+- Breadth First Search (BFS): Explores a graph by visiting all neighbors of a node before moving on to the next level, effectively moving in a "wave" or breadth-first manner.
+
+**1) Does the search work?**
+  
+**2) How long does it take?**
+
+**3) How good is the result?**
+
+
+**4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?**
+
+**5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
+
+**6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?**
 
 #### Results Best First
 
-TODO
+- Best First Search: Prioritizes nodes based on a heuristic function, typically the estimated distance to the goal, to guide the search towards the most promising areas first.
+
+**1) Does the search work?**
+  
+**2) How long does it take?**
+
+**3) How good is the result?**
+
+
+**4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?**
+
+**5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
+
+**6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?**
 
 #### Results A*
 
-TODO
+- A* Algorithm: Utilizes a combination of the cost to reach a node (g-value) and an estimate of the cost to reach the goal (h-value) to determine the most efficient path in weighted graphs or grids.
+
+**1) Does the search work?**
+  
+**2) How long does it take?**
+
+**3) How good is the result?**
+
+
+**4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?**
+
+**5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
+
+**6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?**
 
 ## Phase 3: New or adapted algorithm
 
@@ -50,4 +113,17 @@ TODO
 
 #### Results Dijkstra's algorithm
 
-TODO
+- Dijkstra's Algorithm: Determines the shortest path in weighted graphs by iteratively selecting the node with the lowest accumulated cost from the source node, considering both the cost to reach the node and the edge weight.
+
+**1) Does the search work?**
+  
+**2) How long does it take?**
+
+**3) How good is the result?**
+
+
+**4) How do the algorithms perform on graphs of varying sizes (small, medium, large)?**
+
+**5) Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
+
+**6) How well do the algorithms handle invalid input (e.g., trying to find a path in a non-existent node)?**  
