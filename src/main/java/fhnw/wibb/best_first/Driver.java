@@ -12,15 +12,22 @@ import java.util.ArrayList;
 public class Driver {
     public static void main(String[] args) {
 
+        // Create a watchdog object to time things
+        WatchDog watchDog = new WatchDog("BestFirst");
+        watchDog.snapShotTotalMemory();     // See how much  memory we have at total
+
         // Load data from the csv files
+        watchDog.snapShotFreeMemory("BeforeLoadingData");
         ArrayList<Node> nodeList = Loader.loadBestFirstNodes();
+        watchDog.snapShotFreeMemory("AfterLoadingData");
         Node start = nodeList.get(0);
         Node destination = nodeList.get(10);
 
-        // Create a watchdog object to time things
-        WatchDog watchDog = new WatchDog("BestFirst");
 
+        watchDog.snapShotFreeMemory("BeforeAlgorithm");
         Results<Node> results = BestFirst.findShortestPath(start, destination, watchDog);
+        watchDog.snapShotFreeMemory("AfterAlgorithm");
+
         System.out.println("/////////////////////////////// BREADTH FIRST SEARCH RESULTS");
         System.out.println("///////// STARTING NODE: " + start.getName());
         System.out.println("///////// ENDING NODE: " + destination.getName());
