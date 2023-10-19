@@ -6,7 +6,7 @@ Your report should be complete. At the same time, please consider:
 Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless words
 
 ## Phase 1: Create map data
-- During this initial phase of the project, all of the group members collected data as explained in the guidelines
+- During this initial phase of the project, all of the group members collected data as explained in the guidelines. However, due to persistent issues with the consolidated data, we opted to utilize a smaller dataset, encompassing the cities or places: Lostorf, Basel, Luzern, Baden, Remigen, Turgi, Aarau, and Unterentfelden (approximately 186 nodes from 8 students).
 
 
 ## Phase 2: Test existing algorithms
