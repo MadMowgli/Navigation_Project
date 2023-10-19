@@ -23,24 +23,24 @@ public class WatchDog {
     // Methods
     // This method "starts" a new timer with the given algorithmName
     public void startTime() {
-        measurements.get(algorithmName).put("start", System.nanoTime());
+        measurements.get(algorithmName).put("Time_Start", System.nanoTime());
     }
 
     // This method "stops" an existing timer and returns (end - start), which is the measured time in nanoseconds
     public long stopTime() {
         if(!measurements.containsKey(algorithmName)) { throw new RuntimeException("No Measurement found with key: " + algorithmName); }
-        measurements.get(algorithmName).put("stop", System.nanoTime());
-        measurements.get(algorithmName).put("total", measurements.get(algorithmName).get("stop") - measurements.get(algorithmName).get("start"));
-        return measurements.get(algorithmName).get("total");
+        measurements.get(algorithmName).put("Time_Stop", System.nanoTime());
+        measurements.get(algorithmName).put("Time_Total", measurements.get(algorithmName).get("Time_Stop") - measurements.get(algorithmName).get("Time_Start"));
+        return measurements.get(algorithmName).get("Time_Total");
     }
 
-    public void snapShotFreeMemory() {
-        String measurementName = "FreeMemory_" + System.currentTimeMillis();
+    public void snapShotFreeMemory(String tag) {
+        String measurementName = "FreeMemory_" + tag + System.currentTimeMillis();
         measurements.get(algorithmName).put(measurementName, Runtime.getRuntime().freeMemory());
     }
 
     public void snapShotTotalMemory() {
-        String measurementName = "TotalMemory" + System.currentTimeMillis();
+        String measurementName = "TotalMemory_" + System.currentTimeMillis();
         measurements.get(algorithmName).put(measurementName, Runtime.getRuntime().totalMemory());
     }
 
@@ -49,9 +49,9 @@ public class WatchDog {
         if(!measurements.containsKey(algorithmName)) { throw new RuntimeException("No Measurement found with key: " + algorithmName); }
         if(!acceptedFormats.contains(format)) { throw new IllegalArgumentException("Time format '"+format+"' not allowed! Use ns, ms or s"); }
         return switch (format) {
-            case "ns" -> measurements.get(algorithmName).get("total");
-            case "ms" -> measurements.get(algorithmName).get("total") / 1000000.0;
-            case "s" -> measurements.get(algorithmName).get("total") / 1000000000.0;
+            case "ns" -> measurements.get(algorithmName).get("Time_Total");
+            case "ms" -> measurements.get(algorithmName).get("Time_Total") / 1000000.0;
+            case "s" -> measurements.get(algorithmName).get("Time_Total") / 1000000000.0;
             default -> -1;
         };
     }
