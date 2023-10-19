@@ -123,7 +123,8 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
     |---------------------------------------------|-----------|
     | Finds the shortest path between two nodes   |           |
     | Utilizes both g-value and h-value effectively |           |
-    **2) How good is the result?**
+
+  **2) How good is the result?**
 
   - | Test Case Description                      | Input Data                                           | Expected Output          | Actual Output |
     |--------------------------------------------|-----------------------------------------------------|-------------------------|---------------|
@@ -155,7 +156,8 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
     |--------------------------------------|-----------|
     | Finds the shortest path between nodes |           |
     | Considers both node cost and edge weight |           |
-    **2) How good is the result?**
+    
+  **2) How good is the result?**
 
   - | Test Case Description                      | Input Data                                           | Expected Output          | Actual Output |
     |--------------------------------------------|-----------------------------------------------------|-------------------------|---------------|
