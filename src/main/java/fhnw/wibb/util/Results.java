@@ -32,9 +32,8 @@ public class Results<T extends iNode> {
     public void writeToCSV(String fileName) {
 
         String filePath = Results.class.getClassLoader().getResource("").getPath() + fileName;
-        System.out.println(filePath);
 
-        try(FileWriter fileWriter = new FileWriter(filePath)) {
+        try(FileWriter fileWriter = new FileWriter(filePath, true)) {
             fileWriter.append("Measurement;Value\n"); // Write the header column
             fileWriter.flush();
 

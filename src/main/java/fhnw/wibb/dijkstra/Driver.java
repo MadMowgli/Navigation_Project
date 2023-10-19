@@ -21,23 +21,33 @@ public class Driver {
         ArrayList<Node> nodeList = Loader.loadDijkstraNodes();
         watchDog.snapShotFreeMemory("AfterLoadingData");
 
+        for(int i = 1; i < 60; i++) {
+            Node start = nodeList.get(i);
+            Node end = nodeList.get(nodeList.size() - i);
 
-        Node start = nodeList.get(0);
-        Node destination = nodeList.get(10);
+            watchDog.snapShotFreeMemory("BeforeAlgorithm");
+            Results<Node> results = DijkstraSearch.findShortestPath(start, end, watchDog);
+            watchDog.snapShotFreeMemory("AfterAlgorithm");
 
-        // Find the shortest path using Dijkstra's algorithm
-        Results<Node> results = DijkstraSearch.findShortestPath(start, destination, watchDog);
+            results.writeToCSV("Dijkstra.csv");
+        }
 
-        // Write results to csv
-        results.writeToCSV("Results_Dijkstra");
+//        Node start = nodeList.get(0);
+//        Node destination = nodeList.get(10);
+//
+//        // Find the shortest path using Dijkstra's algorithm
+//        Results<Node> results = DijkstraSearch.findShortestPath(start, destination, watchDog);
+//
+//        // Write results to csv
+//        results.writeToCSV("Results_Dijkstra");
 
         // Print the shortest path
-        System.out.println("/////////////////////////////// DIJKSTRA'S SHORTEST PATH RESULTS");
-        System.out.println("///////// STARTING NODE: " + start.getName());
-        System.out.println("///////// ENDING NODE: " + destination.getName());
-        System.out.println("///////// PATH: ");
-        results.getPath().forEach(node -> System.out.println("//// " + node.getName() + " ->"));
-        System.out.println("///////////////////////////////");
+//        System.out.println("/////////////////////////////// DIJKSTRA'S SHORTEST PATH RESULTS");
+//        System.out.println("///////// STARTING NODE: " + start.getName());
+//        System.out.println("///////// ENDING NODE: " + destination.getName());
+//        System.out.println("///////// PATH: ");
+//        results.getPath().forEach(node -> System.out.println("//// " + node.getName() + " ->"));
+//        System.out.println("///////////////////////////////");
     }
 }
 

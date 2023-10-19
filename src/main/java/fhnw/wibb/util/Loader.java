@@ -16,9 +16,11 @@ public class Loader {
     // This class contains data loading functions for each of the different algorithms.
     // There are different loading functions, since every algorithm works with a slightly different representation of a node
 
+    private static final String edgesFile = "/edges.csv";
+//    private static final String edgesFile = "/edges_generated.csv";
+
     // Depth First loading method
     public static ArrayList<Node> loadDepthFirstNodes() {
-        String edgesFile = "/edges.csv";
 
         ArrayList<Node> nodeList = new ArrayList<>();
 
@@ -61,7 +63,6 @@ public class Loader {
 
     // Breadth First loading method
     public static ArrayList<fhnw.wibb.breadth_first.Models.Node> loadBreadthFirstNodes() {
-        String edgesFile = "/edges.csv";
 
         ArrayList<fhnw.wibb.breadth_first.Models.Node> nodeList = new ArrayList<>();
 
@@ -106,7 +107,6 @@ public class Loader {
     public static ArrayList<fhnw.wibb.best_first.Models.Node> loadBestFirstNodes() {
 
         // Read edges
-        String edgesFile = "/edges.csv";
         String nodesFile = "/nodes.csv";
 
         ArrayList<fhnw.wibb.best_first.Models.Node> nodeList = new ArrayList<>();
@@ -181,7 +181,6 @@ public class Loader {
     public static ArrayList<fhnw.wibb.a_star.Models.Node> loadAStarNodes() {
 
         // Read edges
-        String edgesFile = "/edges.csv";
         String nodesFile = "/nodes.csv";
 
         ArrayList<fhnw.wibb.a_star.Models.Node> nodeList = new ArrayList<>();

@@ -35,12 +35,12 @@ public class WatchDog {
     }
 
     public void snapShotFreeMemory(String tag) {
-        String measurementName = "FreeMemory_" + tag + System.currentTimeMillis();
+        String measurementName = "FreeMemory_" + tag;
         measurements.get(algorithmName).put(measurementName, Runtime.getRuntime().freeMemory());
     }
 
     public void snapShotTotalMemory() {
-        String measurementName = "TotalMemory_" + System.currentTimeMillis();
+        String measurementName = "TotalMemory_";
         measurements.get(algorithmName).put(measurementName, Runtime.getRuntime().totalMemory());
     }
 
