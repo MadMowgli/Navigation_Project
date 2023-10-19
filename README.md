@@ -44,15 +44,12 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
     - | Success Criteria                  | ok/failed |
       |-----------------------------------|-----------|
       | Successfully reaches goal node     |           |
-      | Traverses all reachable nodes      |           |
-      | Backtracks and explores all paths  |           |
 
     **2) How good is the result?**
-  -   | Test Case Description                       | Input Data                                        | Expected Output        | Actual Output |
-      |---------------------------------------------|--------------------------------------------------|-----------------------|---------------|
-      | Simple Graph                                | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD]      | Reachable node D      |               |
-      | Disconnected Graph                          | Graph: [Nodes: A, B, C; Edges: AB, BC]             | Unreachable node X    |               |
-      | Circular Loop                               | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD, DA]  | All nodes in loop      |               |
+  -   | Test Case Description | Input Data                                        | Expected Output        | Actual Output |
+      |-----------------------|--------------------------------------------------|-----------------------|---------------|
+      | Simple Graph          | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD]      | Reachable node D      |               |
+      | No circular Loop      | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD, DA]  | All nodes in loop      |               |
     
   **3) How long does it take?**
 
@@ -71,14 +68,11 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
   - | Success Criteria                | ok/failed |
     |---------------------------------|-----------|
     | Finds shortest path between nodes|           |
-    | Visits all reachable nodes      |           |
 
   **2) How good is the result?**
   - | Test Case Description                         | Input Data                                        | Expected Output             | Actual Output |
     |-----------------------------------------------|--------------------------------------------------|-----------------------------|---------------|
-    | Simple Graph                                  | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD]      | Shortest path from A to D   |               |
-    | Disconnected Graph                            | Graph: [Nodes: A, B, C; Edges: AB, BC]             | Unreachable node X          |               |
-    | Graph with Different Levels                    | Graph: [Nodes: A, B, C, D, E; Edges: AB, AC, BC, BD, CE] | Shortest path from A to D   |               |
+    | Simple Graph                                  | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD]      | Shortest path from A to D   |               | |
 
   **3) How long does it take?**
   
@@ -97,13 +91,11 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
   - | Success Criteria                                           | ok/failed |
     |------------------------------------------------------------|-----------|
     | Reaches the goal node quickly based on heuristic evaluation |           |
-    | May not guarantee the shortest path                         |           |
 
     **2) How good is the result?**
   - | Test Case Description                       | Input Data                                           | Expected Output | Actual Output |
     |---------------------------------------------|-----------------------------------------------------|----------------|---------------|
-    | Weighted graph with a heuristic function    | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD]; Heuristic: H(A) = 3, H(B) = 2, H(C) = 1, H(D) = 0 | Quickly reaches goal node |               |
-    | Graph with a suboptimal path according to heuristic | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD]; Heuristic: H(A) = 0, H(B) = 3, H(C) = 2, H(D) = 1 | Reaches goal node |               |
+    | Weighted graph with a heuristic function    | Graph: [Nodes: A, B, C, D; Edges: AB, BC, CD]; Heuristic: H(A) = 3, H(B) = 2, H(C) = 1, H(D) = 0 | Quickly reaches goal node |               | |
 
   **3) How long does it take?**
 
@@ -122,15 +114,12 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
   - | Success Criteria                            | ok/failed |
     |---------------------------------------------|-----------|
     | Finds the shortest path between two nodes   |           |
-    | Utilizes both g-value and h-value effectively |           |
 
   **2) How good is the result?**
 
   - | Test Case Description                      | Input Data                                           | Expected Output          | Actual Output |
     |--------------------------------------------|-----------------------------------------------------|-------------------------|---------------|
     | Simple Weighted Graph                       | Graph: [Nodes: A, B, C, D; Edges: AB(3), BC(2), CD(1)] | Shortest path from A to D |               |
-    | Weighted Graph with Obstacles               | Graph: [Nodes: A, B, C, D; Edges: AB(3), BC(2), CD(1); Obstacles: B] | Shortest path from A to D |               |
-    | Large Weighted Graph                        | [Provide details of input data]                     | [Provide expected output] |               |
 
   **3) How long does it take?**
   
@@ -155,15 +144,12 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
   - | Success Criteria                     | ok/failed |
     |--------------------------------------|-----------|
     | Finds the shortest path between nodes |           |
-    | Considers both node cost and edge weight |           |
     
   **2) How good is the result?**
 
   - | Test Case Description                      | Input Data                                           | Expected Output          | Actual Output |
     |--------------------------------------------|-----------------------------------------------------|-------------------------|---------------|
     | Simple Weighted Graph                       | Graph: [Nodes: A, B, C, D; Edges: AB(3), BC(2), CD(1)] | Shortest path from A to D |               |
-    | Weighted Graph with Obstacles               | Graph: [Nodes: A, B, C, D; Edges: AB(3), BC(2), CD(1); Obstacles: B] | Shortest path from A to D |               |
-    | Large Weighted Graph                        | [Provide details of input data]                     | [Provide expected output] |               |
 
   **3) How long does it take?**
 
