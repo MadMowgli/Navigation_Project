@@ -20,30 +20,25 @@ public class Driver {
         watchDog.snapShotFreeMemory("BeforeLoadingData");
         ArrayList<Node> nodeList = Loader.loadBestFirstNodes();
         watchDog.snapShotFreeMemory("AfterLoadingData");
-//        Node start = nodeList.get(3);
-//        Node destination = nodeList.get(183);
-
-        for(int i = 1; i < 100; i++) { {
-            Node start = nodeList.get(i);
-            Node end = nodeList.get(nodeList.size() - i);
-
-            watchDog.snapShotFreeMemory("BeforeAlgorithm");
-            Results<Node> results = BestFirst.findShortestPath(start, end, watchDog);
-            watchDog.snapShotFreeMemory("AfterAlgorithm");
-            results.writeToCSV("BestFirst.csv");
-        }}
 
 
-//        watchDog.snapShotFreeMemory("BeforeAlgorithm");
-//        Results<Node> results = BestFirst.findShortestPath(start, destination, watchDog);
-//        watchDog.snapShotFreeMemory("AfterAlgorithm");
-//
-//        System.out.println("/////////////////////////////// BREADTH FIRST SEARCH RESULTS");
-//        System.out.println("///////// STARTING NODE: " + start.getName());
-//        System.out.println("///////// ENDING NODE: " + destination.getName());
-//        System.out.println("///////// PATH: ");
-//        results.getPath().forEach(node -> System.out.println("//// " + node.getName() + " ->"));
-//        System.out.println("///////////////////////////////");
+        for (int i = 1; i < 100; i++) {
+            {
+                Node start = nodeList.get(i);
+                Node end = nodeList.get(nodeList.size() - i);
+
+                try {
+                    watchDog.snapShotFreeMemory("BeforeAlgorithm");
+                    Results<Node> results = BestFirst.findShortestPath(start, end, watchDog);
+                    watchDog.snapShotFreeMemory("AfterAlgorithm");
+                    results.writeToCSV("BestFirst.csv");
+                } catch (Exception e) {
+                    System.out.println("No path found between: " + start.getName() + " and " + end.getName());
+                }
+
+            }
+        }
+
 
     }
 }

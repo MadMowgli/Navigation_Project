@@ -11,21 +11,32 @@ public class Driver {
     // This is the driver class for the depth  first package. Use it to run the algorithm.
     public static void main(String[] args) {
 
-        ArrayList<Node> nodeList = Loader.loadDepthFirstNodes();
-        Node start = nodeList.get(27);
-        Node end = nodeList.get(98);
-
         WatchDog watchDog = new WatchDog("DepthFirst");
-        Results<Node> results = DepthFirstSearch.findPath(start, end, watchDog);
+        watchDog.snapShotTotalMemory();     // See how much  memory we have at total
 
-        System.out.println("/////////////////////////////// DEPTH FIRST SEARCH RESULTS");
-        System.out.println("///////// STARTING NODE: " + start.getName());
-        System.out.println("///////// ENDING NODE: " + end.getName());
-        System.out.println("///////// PATH: ");
-        results.getPath().forEach(node -> System.out.println("//// " + node.getName() + " ->"));
-        System.out.println("///////////////////////////////");
+        watchDog.snapShotFreeMemory("BeforeLoadingData");
+        ArrayList<Node> nodeList = Loader.loadDepthFirstNodes();
+        watchDog.snapShotFreeMemory("AfterLoadingData");
 
-        System.out.println();
+
+        for(int i = 1; i < 60; i++) {
+
+            Node start = nodeList.get(i);
+            Node end = nodeList.get(nodeList.size() - i);
+
+            try {
+
+                watchDog.snapShotFreeMemory("BeforeAlgorithm");
+                Results<Node> results = DepthFirstSearch.findPath(start, end, watchDog);
+                watchDog.snapShotFreeMemory("AfterAlgorithm");
+
+                results.writeToCSV("DepthFirst.csv");
+            } catch (Exception e) {
+                System.out.println("No path found between: " + start.getName() + " and " + end.getName());
+            }
+
+        }
+
     }
 
 }

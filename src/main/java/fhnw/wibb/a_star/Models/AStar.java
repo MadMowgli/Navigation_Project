@@ -34,25 +34,20 @@ public class AStar {
         priorityQueue.add(start);
         HashSet<Node> visited = new HashSet<>();
 
-        // Measure memory after initialization
-//        watchDog.snapShotFreeMemory("AfterInit");
-
         // The algorithm really starts here, we start counting here
         watchDog.startTime();
-//        watchDog.snapShotFreeMemory("AlgorithmStart");
         while (!priorityQueue.isEmpty()) {
             Node currentNode = priorityQueue.poll();
+
+            // We found a solution
             if (currentNode.equals(destination))
                 return constructPath(start, currentNode, watchDog);  // Return if we found the destination
 
             visited.add(currentNode);   // Mark current node as visited
-//            watchDog.snapShotFreeMemory("AfterAddVisited");
             for (Node neighbour : currentNode.getNeighbours()) {
                 if (visited.contains(neighbour)) continue; // Skip if we already visited this neighbour
-//                watchDog.snapShotFreeMemory("InNeighbourLoop");
                 // Get the gCost from the current node to the neighbour by looking at the respective edge
                 for (Edge edge : currentNode.getEdges()) {
-//                    watchDog.snapShotFreeMemory("InEdgeLoop");
                     if (edge.getA().equals(neighbour) || edge.getB().equals(neighbour)) {
                         double tentative_g = currentNode.getgCost() + edge.getDistance();
 
@@ -67,7 +62,6 @@ public class AStar {
                                 priorityQueue.remove(neighbour);
                             }
                             priorityQueue.add(neighbour);
-//                            watchDog.snapShotFreeMemory("AfterAddPriorityQ");
                         }
                     }
                 }

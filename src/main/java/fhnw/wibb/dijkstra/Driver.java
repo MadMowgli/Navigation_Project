@@ -22,32 +22,25 @@ public class Driver {
         watchDog.snapShotFreeMemory("AfterLoadingData");
 
         for(int i = 1; i < 60; i++) {
+
             Node start = nodeList.get(i);
             Node end = nodeList.get(nodeList.size() - i);
 
-            watchDog.snapShotFreeMemory("BeforeAlgorithm");
-            Results<Node> results = DijkstraSearch.findShortestPath(start, end, watchDog);
-            watchDog.snapShotFreeMemory("AfterAlgorithm");
+            try {
+                System.out.println(start.getName());
+                System.out.println(end.getName());
 
-            results.writeToCSV("Dijkstra.csv");
+                watchDog.snapShotFreeMemory("BeforeAlgorithm");
+                Results<Node> results = DijkstraSearch.findShortestPath(start, end, watchDog);
+                watchDog.snapShotFreeMemory("AfterAlgorithm");
+
+                results.writeToCSV("Dijkstra.csv");
+            } catch (Exception e) {
+                System.out.println("No path found between: " + start.getName() + " and " + end.getName());
+            }
+
         }
 
-//        Node start = nodeList.get(0);
-//        Node destination = nodeList.get(10);
-//
-//        // Find the shortest path using Dijkstra's algorithm
-//        Results<Node> results = DijkstraSearch.findShortestPath(start, destination, watchDog);
-//
-//        // Write results to csv
-//        results.writeToCSV("Results_Dijkstra");
-
-        // Print the shortest path
-//        System.out.println("/////////////////////////////// DIJKSTRA'S SHORTEST PATH RESULTS");
-//        System.out.println("///////// STARTING NODE: " + start.getName());
-//        System.out.println("///////// ENDING NODE: " + destination.getName());
-//        System.out.println("///////// PATH: ");
-//        results.getPath().forEach(node -> System.out.println("//// " + node.getName() + " ->"));
-//        System.out.println("///////////////////////////////");
     }
 }
 

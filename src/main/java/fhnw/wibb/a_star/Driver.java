@@ -21,35 +21,24 @@ public class Driver {
         watchDog.snapShotFreeMemory("BeforeLoadingData");
         ArrayList<Node> nodeList = Loader.loadAStarNodes();
         watchDog.snapShotFreeMemory("AfterLoadingData");
-//        Node start = nodeList.get(0);
-//        Node end = nodeList.get(10);
 
-        for(int i = 1; i < 60; i++) {
+        for (int i = 1; i < 100; i++) {
+
             Node start = nodeList.get(i);
             Node end = nodeList.get(nodeList.size() - i);
+            try {
+                // Search the shortest path using a*
+                watchDog.snapShotFreeMemory("BeforeAlgorithm");
+                Results<Node> results = AStar.aStarSearch(start, end, watchDog);
+                watchDog.snapShotFreeMemory("AfterAlgorithm");
 
-            // Search the shortest path using a*
-            watchDog.snapShotFreeMemory("BeforeAlgorithm");
-            Results<Node> results = AStar.aStarSearch(start, end, watchDog);
-            watchDog.snapShotFreeMemory("AfterAlgorithm");
+                results.writeToCSV("AStar.csv");
+            } catch (Exception e) {
+                System.out.println("No path found between: " + start.getName() + " and " + end.getName());
+            }
 
-            results.writeToCSV("AStar.csv");
         }
 
-        System.out.println("Done");
-
-        // Search the shortest path using a*
-//        watchDog.snapShotFreeMemory("BeforeAlgorithm");
-//        Results<Node> results = AStar.aStarSearch(start, end, watchDog);
-//        watchDog.snapShotFreeMemory("AfterAlgorithm");
-//
-//
-//        System.out.println("/////////////////////////////// BREADTH FIRST SEARCH RESULTS");
-//        System.out.println("///////// STARTING NODE: " + start.getName());
-//        System.out.println("///////// ENDING NODE: " + end.getName());
-//        System.out.println("///////// PATH: ");
-//        results.getPath().forEach(node -> System.out.println("//// " + node.getName() + " ->"));
-//        System.out.println("///////////////////////////////");
 
     }
 
