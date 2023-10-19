@@ -11,6 +11,16 @@ public class AStar {
 
     public static Results<Node> aStarSearch(Node start, Node destination, WatchDog watchDog) {
 
+        if(start == null){
+            throw new IllegalArgumentException("Invalid start node argument. Start node musn't be null.");
+        }
+        if(destination == null){
+            throw new IllegalArgumentException("Invalid destination node argument. Destination node musn't be null.");
+        }
+        if(watchDog == null){
+            throw new IllegalArgumentException("Invalid watchDog argument. WatchDog musn't be null.");
+        }
+
         // Initialize stuff
         start.setgCost(0);
         start.setTotalCost(start.getgCost(), calculateEuclidianDistance(start, destination));
@@ -24,7 +34,8 @@ public class AStar {
         watchDog.startTime();
         while (!priorityQueue.isEmpty()) {
             Node currentNode = priorityQueue.poll();
-            if(currentNode.equals(destination)) return constructPath(currentNode, watchDog);  // Return if we found the destination
+            if (currentNode.equals(destination))
+                return constructPath(currentNode, watchDog);  // Return if we found the destination
 
             visited.add(currentNode);   // Mark current node as visited
             for (Node neighbour : currentNode.getNeighbours()) {
@@ -54,6 +65,7 @@ public class AStar {
         }
 
         return null;
+
     }
 
     private static double calculateEuclidianDistance(Node node1, Node node2) {
