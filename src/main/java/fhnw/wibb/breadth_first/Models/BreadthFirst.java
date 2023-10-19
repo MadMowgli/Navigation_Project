@@ -12,6 +12,16 @@ public class BreadthFirst {
     // Methods
     public static Results<Node> breadthFirstFind(Node start, Node destination, WatchDog watchDog) {
 
+        if(start == null){
+            throw new IllegalArgumentException("Invalid start node argument. Start node musn't be null.");
+        }
+        if(destination == null){
+            throw new IllegalArgumentException("Invalid destination node argument. Destination node musn't be null.");
+        }
+        if(watchDog == null){
+            throw new IllegalArgumentException("Invalid watchDog argument. WatchDog musn't be null.");
+        }
+
         // Initiate stuff
         Queue<Node> queue = new LinkedList<>();     // Contains nodes that we need to visit
         HashSet<Node> visited = new HashSet<>();    // Contains nodes that we have visited already

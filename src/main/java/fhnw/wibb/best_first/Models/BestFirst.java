@@ -11,6 +11,16 @@ public class BestFirst {
 
     public static Results<Node> findShortestPath(Node start, Node destination, WatchDog watchDog) {
 
+        if(start == null){
+            throw new IllegalArgumentException("Invalid start node argument. Start node musn't be null.");
+        }
+        if(destination == null){
+            throw new IllegalArgumentException("Invalid destination node argument. Destination node musn't be null.");
+        }
+        if(watchDog == null){
+            throw new IllegalArgumentException("Invalid watchDog argument. WatchDog musn't be null.");
+        }
+
         // Initialize stuff
         HashSet<Node> visited = new HashSet<>();
 

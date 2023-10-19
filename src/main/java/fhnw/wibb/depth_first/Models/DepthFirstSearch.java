@@ -11,6 +11,16 @@ public class DepthFirstSearch {
 
     public static Results<Node> findPath(Node startNode, Node destinationNode, WatchDog watchDog) {
 
+        if(startNode == null){
+            throw new IllegalArgumentException("Invalid start node argument. Start node musn't be null.");
+        }
+        if(destinationNode == null){
+            throw new IllegalArgumentException("Invalid destination node argument. Destination node musn't be null.");
+        }
+        if(watchDog == null){
+            throw new IllegalArgumentException("Invalid watchDog argument. WatchDog musn't be null.");
+        }
+
         // Initialize stuff
         Stack<ArrayList<Node>> stack = new Stack<>();
         ArrayList<Node> initialPath = new ArrayList<>();

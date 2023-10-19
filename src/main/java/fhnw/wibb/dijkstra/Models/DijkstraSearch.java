@@ -14,6 +14,16 @@ public class DijkstraSearch {
     // TODO: Use performance timers here
     public static ArrayList<Node> findShortestPath(Node start, Node destination) {
 
+        if(start == null){
+            throw new IllegalArgumentException("Invalid start node argument. Start node musn't be null.");
+        }
+        if(destination == null){
+            throw new IllegalArgumentException("Invalid destination node argument. Destination node musn't be null.");
+        }
+        //if(watchDog == null){
+            //throw new IllegalArgumentException("Invalid watchDog argument. WatchDog musn't be null.");
+        //}
+
         // Initialize all nodes as unvisited
         ArrayList<Node> neighbours = start.getNeighbours();
         for (Node node : neighbours) {
