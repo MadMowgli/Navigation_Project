@@ -45,7 +45,7 @@ public class Driver {
         ArrayList<Node> nodeList = Loader.loadBestFirstNodes();
         WatchDog watchDog = new WatchDog("BestFirst");
 
-        Node start = nodeList.get(00);
+        Node start = nodeList.get(0);
         Node end = nodeList.get(30);
 
         watchDog.snapShotFreeMemory("BeforeAlgorithm");

@@ -112,7 +112,7 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 - All the testing procedures and inquiries conducted in Phase 2 were replicated using this newly implemented algorithm.
 - Check the question overview for test results.
 
-## Future perspectives for project improvements
+## Future outlook for project improvements
 
 In our thorough examination of the project, we've addressed critical questions about the search functionality, result quality, execution speed, algorithm performance across diverse graph sizes, and memory utilization. We've also scrutinized how well the algorithms handle irregular inputs, ensuring robustness.
 As we look to the future, there are several avenues we can explore to further refine this project:

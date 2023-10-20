@@ -48,7 +48,7 @@ public class Driver {
         Node start = nodeList.get(0);
         Node end = nodeList.get(30);
 
-        watchDog.snapShotFreeMemory("BeforeAlgorithm");
+        watchDog.snapShotFreeMemory("BaeforeAlgorithm");
         Results<Node> results = AStar.aStarSearch(start, end, watchDog);
         watchDog.snapShotFreeMemory("AfterAlgorithm");
 
