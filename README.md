@@ -7,7 +7,7 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 
 ## Phase 1: Create map data
 - During this initial phase of the project, all of the group members collected data as explained in the guidelines.
-- However, due to persistent issues with the consolidated data, we opted to utilize a smaller dataset, encompassing the cities or places: Lostorf, Basel, Luzern, Baden, Remigen, Turgi, Aarau, and Unterentfelden (approximately 186 nodes from 8 students).
+- However, due to persistent issues with the consolidated data, we opted to utilize a smaller dataset, containing only the cities: Lostorf, Basel, Luzern, Baden, Remigen, Turgi, Aarau, and Unterentfelden (approximately 186 nodes from 8 students).
 
 
 ## Phase 2: Test existing algorithms
@@ -29,21 +29,21 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 ### Questions
 
 1) **Does the search work?**
-- | Algorithm     | ok (&#x2714;) /<br> ok with conditions **~** / <br> failed (&#x2718;) |Comment |
-  |---------------|-----------------------------------------------------------------------|--------|
-  | Depth First   | &#x2714;                                                              |        |
-  | Breadth First | &#x2714;                                                              |        |
-  | Best First    | &#x2714;                                                              |        |
-  | A*            | **~**                                                                 |Single runs work. However, if we test the algorithm with multiple runs (loop) it fails to find the destination nodes in most cases. We tried to figure out the root cause of this problem. However, we were not able to detect and solve it in time.        |
-  | Dijkstra's    | **~**                                                                 |Single runs work. However, if we test the algorithm with multiple runs (loop) it fails to find the destination nodes in most cases. We tried to figure out the root cause of this problem. However, we were not able to detect and solve it in time.        |
+- | Algorithm     | ok (&#x2714;) /<br> ok with conditions **~** / <br> failed (&#x2718;) | Comment                                                                                                                                                                                                                                                                                             |
+  |---------------|-----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | Depth First   | &#x2714;                                                              |                                                                                                                                                                                                                                                                                                     |
+  | Breadth First | &#x2714;                                                              |                                                                                                                                                                                                                                                                                                     |
+  | Best First    | &#x2714;                                                              |                                                                                                                                                                                                                                                                                                     |
+  | A*            | **~**                                                                 | Single runs work. However, if we test the algorithm with multiple runs (loop) it fails to find the destination nodes in most cases. We tried to figure out the root cause of this problem. However, we were not able to detect and solve it in time, despite the heavy effort of all group members. |
+  | Dijkstra's    | **~**                                                                 | Single runs work. However, if we test the algorithm with multiple runs (loop) it fails to find the destination nodes in most cases. We tried to figure out the root cause of this problem. However, we were not able to detect and solve it in time, despite the heavy effort of all group members.                                              |
 2) **How good is the result?**
 
 -  **Depth First** 
 
-    - | Nodes                                                            | Input Data                    | Output                                                                                                                                                                                                                    |
-      |------------------------------------------------------------------|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv Nodes: [0] - [30]   | **BAD** - The result is not ideal, because algorithm chooses a diversionary path: `AArau` &rarr;  `Turgi` &rarr; `Remigen` &rarr; `Turgi` &rarr; `Baden` &rarr; `Aarau`.                                       |
-      | Start node `Aarau/Zollrain/16` to end node `Basel/Birmannsgasse/49` | edges.csv Nodes: [30] - [60]  | **BAD** - The result is not ideal, because algorithm chooses a diversionary path: `AArau` &rarr;  `Turgi` &rarr; `Remigen` &rarr; `Turgi` &rarr; `Baden` &rarr; `Basel`.                                       |
+    - | Nodes                                                            | Input Data                    | Output                                                                                                                                                                                                         |
+      |------------------------------------------------------------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv Nodes: [0] - [30]   | **BAD** - The result is not ideal, because algorithm chooses a diversionary path: `Aarau` &rarr;  `Turgi` &rarr; `Remigen` &rarr; `Turgi` &rarr; `Baden` &rarr; `Aarau`.                                       |
+      | Start node `Aarau/Zollrain/16` to end node `Basel/Birmannsgasse/49` | edges.csv Nodes: [30] - [60]  | **BAD** - The result is not ideal, because algorithm chooses a diversionary path: `Aarau` &rarr;  `Turgi` &rarr; `Remigen` &rarr; `Turgi` &rarr; `Baden` &rarr; `Basel`.                                       |
       | Start node `Basel/Birmannsgasse/49` to end node `Lostorf/Hofmattstrasse/20` | edges.csv Nodes: [60] - [90]  | **BAD** - The result is not ideal, because algorithm chooses a diversionary path: `Basel` &rarr;  `Baden` &rarr; `Emmen` &rarr; `Suhr` &rarr; `Aarau` &rarr; `Unterentfelden` &rarr; `Aarau` &rarr; `Lostorf`. |
       | Start node `Lostorf/Hofmattstrasse/20` to end node `Luzern/Zentralstrasse/1` | edges.csv Nodes: [90] - [120] | **BAD** - The result is not ideal, because algorithm chooses a diversionary path: `Lostorf` &rarr;  `Basel` &rarr; `Turgi` &rarr; `Remigen` &rarr; `Turgi` &rarr; `Baden` &rarr; `Emmen` &rarr; `Luzern`.      |
 
@@ -52,8 +52,8 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 
     - | Nodes                                                             | Input Data                    | Output                                                                                                                                                                                      |
       |------------------------------------------------------------------|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv Nodes: [0] - [30]   | **GOOD** - The result is good. Compared to Depth First, the algorithm stays in `AArau` when we choose the same start and destination.                                                       |
-      | Start node `Aarau/Zollrain/16` to end node `Basel/Birmannsgasse/49` | edges.csv Nodes: [30] - [60]  | **MEDIUM** - The result is suboptimal, though it surpasses the depth algorithm in efficiency with fewer stops along the path: `AArau` &rarr;  `Baden` &rarr; `Basel`.                       |
+      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv Nodes: [0] - [30]   | **GOOD** - The result is good. Compared to Depth First, the algorithm stays in `Aarau` when we choose the same start and destination.                                                       |
+      | Start node `Aarau/Zollrain/16` to end node `Basel/Birmannsgasse/49` | edges.csv Nodes: [30] - [60]  | **MEDIUM** - The result is suboptimal, though it surpasses the depth algorithm in efficiency with fewer stops along the path: `Aarau` &rarr;  `Baden` &rarr; `Basel`.                       |
       | Start node `Basel/Birmannsgasse/49` to end node `Lostorf/Hofmattstrasse/20` | edges.csv Nodes: [60] - [90]  | **GOOD** - The result is commendable, as the path is straightforward: `Basel` &rarr;  `Lostorf`.                                                                                            |
       | Start node `Lostorf/Hofmattstrasse/20` to end node `Luzern/Zentralstrasse/1` | edges.csv Nodes: [90] - [120] | **BAD** - The result is not ideal, because the algorithm chooses a diversionary path: `Lostorf` &rarr;  `Basel` &rarr; `Turgi` &rarr; `Aarau` &rarr; `Suhr` &rarr; `Emmen` &rarr; `Luzern`. |
 
@@ -62,28 +62,28 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 
     - | Nodes                                                             | Input Data                    | Output                                                                                                                                                                                             |
       |------------------------------------------------------------------|-------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv Nodes: [0] - [30]  | **GOOD** - The result is good. Compared to Depth First, the algorithm stays in `AArau` when we choose the same start and destination.                                                              |
-      | Start node `Aarau/Zollrain/16` to end node `Basel/Birmannsgasse/49` | edges.csv Nodes: [30] - [60]  | **MEDIUM** - While not optimal, it outperforms the e.g. the depth first algorithm in efficiency along the path:: `AArau` &rarr;  `Turgi` &rarr; `Baden` &rarr; `Basel`.                            |
-      | Start node `Basel/Birmannsgasse/49` to end node `Lostorf/Hofmattstrasse/20` | edges.csv Nodes: [60] - [90]  | **GOOD** - The outcome is satisfactory, but due to a slight gap in Lostorf's connection, it opts to travel from Basel to Baden initially: `Basel` &rarr;  `Baden` &rarr; `AArau` &rarr; `Lostorf`. |
+      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv Nodes: [0] - [30]  | **GOOD** - The result is good. Compared to Depth First, the algorithm stays in `Aarau` when we choose the same start and destination.                                                              |
+      | Start node `Aarau/Zollrain/16` to end node `Basel/Birmannsgasse/49` | edges.csv Nodes: [30] - [60]  | **MEDIUM** - While not optimal, it outperforms the e.g. the depth first algorithm in efficiency along the path:: `Aarau` &rarr;  `Turgi` &rarr; `Baden` &rarr; `Basel`.                            |
+      | Start node `Basel/Birmannsgasse/49` to end node `Lostorf/Hofmattstrasse/20` | edges.csv Nodes: [60] - [90]  | **GOOD** - The outcome is satisfactory, but due to a slight gap in Lostorf's connection, it opts to travel from Basel to Baden initially: `Basel` &rarr;  `Baden` &rarr; `Aarau` &rarr; `Lostorf`. |
       | Start node `Lostorf/Hofmattstrasse/20` to end node `Luzern/Zentralstrasse/1` | edges.csv Nodes: [90] - [120] | **GOOD** - The result is great, because the algorithm finds a suitable path: `Lostorf` &rarr;  `Aarau` &rarr; `Unterentfelden` &rarr; `Emmen` &rarr; `Luzern`.                                     |
 
 
 -  **A***
 
-    - | Nodes                                                             | Input Data                | Output                                                                                                                                                         |
-      |------------------------------------------------------------------|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv Nodes: [0] - [30] | **GOOD** - The result is good. Compared to Depth First, the algorithm stays in `AArau` when we choose the same start and destination.                          |
-      | Start node `Aarau/Zollrain/16` to end node `Basel/Birmannsgasse/49` | edges.csv Nodes: [30] - [60]  | **GOOD** - The result is fine, since the path is almost straight forward and considering our map: `AArau` &rarr;  `Baden` &rarr; `Basel`.                      |
-      | Start node `Basel/Birmannsgasse/49` to end node `Lostorf/Hofmattstrasse/20` | edges.csv Nodes: [60] - [90]  | **GOOD** - The outcome is satisfactory, as the path is suitable: `Basel` &rarr;  `Aarau` &rarr; `Lostorf`.                                                     |
-      | Start node `Lostorf/Hofmattstrasse/20` to end node `Luzern/Zentralstrasse/1` | edges.csv Nodes: [90] - [120] | **GOOD** - The result is great, because the algorithm finds a suitable path: `Lostorf` &rarr;  `Aarau` &rarr; `Unterentfelden` &rarr; `Emmen` &rarr; `Luzern`. |
+    - | Nodes                                                             | Input Data                | Output                                                                                                                                                        |
+      |------------------------------------------------------------------|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv Nodes: [0] - [30] | **GOOD** - The result is good. Compared to Depth First, the algorithm stays in `Aarau` when we choose the same start and destination.                         |
+      | Start node `Aarau/Zollrain/16` to end node `Basel/Birmannsgasse/49` | edges.csv Nodes: [30] - [60]  | **GOOD** - The result is fine, since the path is almost straight forward and considering our map: `Aarau` &rarr;  `Baden` &rarr; `Basel`.                     |
+      | Start node `Basel/Birmannsgasse/49` to end node `Lostorf/Hofmattstrasse/20` | edges.csv Nodes: [60] - [90]  | **GOOD** - The outcome is good, as the path is suitable: `Basel` &rarr;  `Aarau` &rarr; `Lostorf`.                                                            |
+      | Start node `Lostorf/Hofmattstrasse/20` to end node `Luzern/Zentralstrasse/1` | edges.csv Nodes: [90] - [120] | **GOOD** - The result is good, because the algorithm finds a suitable path: `Lostorf` &rarr;  `Aarau` &rarr; `Unterentfelden` &rarr; `Emmen` &rarr; `Luzern`. |
 
 -  **Dijkstra's**
 
-    - | Nodes                                                             | Input Data                | Output                                                                                                                                                                                                            |
-      |------------------------------------------------------------------|---------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv Nodes: [0] - [30] | **MEDIUM** - The algorithm uses more steps to get to the destination node. However, it stays in `AArau`.                                                                                               |
-      | Start node `Aarau/Zollrain/16` to end node `Basel/Birmannsgasse/49` | edges.csv Nodes: [30] - [60]  | **GOOD** - The result is fine, since the path is almost straight forward and considering our map: `AArau` &rarr;  `Baden` &rarr; `Basel`.                                                               |
-      | Start node `Basel/Birmannsgasse/49` to end node `Lostorf/Hofmattstrasse/20` | edges.csv Nodes: [60] - [90]  | **GOOD** - _The outcome is good, as the path is straight forward: `Basel` &rarr;  `Lostorf`.                                                                                                            |
+    - | Nodes                                                             | Input Data                | Output                                                                                                                                                                                                 |
+      |------------------------------------------------------------------|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+      | Start node `Aarau/Asylstrasse/1` to end node `Aarau/Zollrain/16` | edges.csv Nodes: [0] - [30] | **MEDIUM** - The algorithm uses more steps to get to the destination node. However, it stays in `Aarau`.                                                                                               |
+      | Start node `Aarau/Zollrain/16` to end node `Basel/Birmannsgasse/49` | edges.csv Nodes: [30] - [60]  | **GOOD** - The result is fine, since the path is almost straight forward and considering our map: `Aarau` &rarr;  `Baden` &rarr; `Basel`.                                                              |
+      | Start node `Basel/Birmannsgasse/49` to end node `Lostorf/Hofmattstrasse/20` | edges.csv Nodes: [60] - [90]  | **GOOD** - _The outcome is good, as the path is straight forward: `Basel` &rarr;  `Lostorf`.                                                                                                           |
       | Start node `Lostorf/Hofmattstrasse/20` to end node `Luzern/Zentralstrasse/1` | edges.csv Nodes: [90] - [120] | **BAD** - The result is suboptimal, because the algorithm selects a diversion: `Lostorf` &rarr;  `Basel` &rarr; `Turgi` &rarr; `Remigen` &rarr; `Turgi` &rarr; `Baden` &rarr; `Emmen` &rarr; `Luzern`. |
 
 
@@ -113,12 +113,8 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 - Check the question overview for test results.
 
 ## Future outlook for project improvements
-
-In our thorough examination of the project, we've addressed critical questions about the search functionality, result quality, execution speed, algorithm performance across diverse graph sizes, and memory utilization. We've also scrutinized how well the algorithms handle irregular inputs, ensuring robustness.
 As we look to the future, there are several avenues we can explore to further refine this project:
 
-- Create or use a better graph without interruption
 - Optimizing Search Strategies
-- Parallel Processing
 - Visualizations and User Interface
 - JUnit Tests
