@@ -5,6 +5,11 @@ the results were. Include code-snippets as needed, but don’t just fill the doc
 Your report should be complete. At the same time, please consider:
 Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless words
 
+## Project Members
+- Joel Läubin
+- Margareta Karaqi
+- Nico Sträuli
+
 ## Phase 1: Create map data
 - During this initial phase of the project, all of the group members collected data as explained in the guidelines.
 - However, due to persistent issues with the consolidated data, we opted to utilize a smaller dataset, containing only the cities: Lostorf, Basel, Luzern, Baden, Remigen, Turgi, Aarau, and Unterentfelden (approximately 186 nodes from 8 students).
