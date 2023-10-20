@@ -45,8 +45,8 @@ public class Driver {
         ArrayList<Node> nodeList = Loader.loadBestFirstNodes();
         WatchDog watchDog = new WatchDog("BestFirst");
 
-        Node start = nodeList.get(90);
-        Node end = nodeList.get(120);
+        Node start = nodeList.get(00);
+        Node end = nodeList.get(30);
 
         watchDog.snapShotFreeMemory("BeforeAlgorithm");
         Results<Node> results = BestFirst.findShortestPath(start, end, watchDog);
