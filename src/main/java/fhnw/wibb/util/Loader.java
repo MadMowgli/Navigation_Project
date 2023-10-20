@@ -16,8 +16,8 @@ public class Loader {
     // This class contains data loading functions for each of the different algorithms.
     // There are different loading functions, since every algorithm works with a slightly different representation of a node
 
-    private static final String edgesFile = "/edges.csv";
-    // private static final String edgesFile = "/edges_small.csv";
+//    private static final String edgesFile = "/edges.csv";
+     private static final String edgesFile = "/edges_small.csv";
 
     // Depth First loading method
     public static ArrayList<Node> loadDepthFirstNodes() {
@@ -107,8 +107,8 @@ public class Loader {
     public static ArrayList<fhnw.wibb.best_first.Models.Node> loadBestFirstNodes() {
 
         // Read edges
-         String nodesFile = "/nodes.csv";
-        // String nodesFile = "/nodes_small.csv";
+//         String nodesFile = "/nodes.csv";
+         String nodesFile = "/nodes_small.csv";
 
         ArrayList<fhnw.wibb.best_first.Models.Node> nodeList = new ArrayList<>();
 
@@ -183,7 +183,7 @@ public class Loader {
 
         // Read edges
         String nodesFile = "/nodes.csv";
-        // String nodesFile = "/nodes_small.csv";
+        // String nodesFile = "/nodes_small.csv.csv";
 
         ArrayList<fhnw.wibb.a_star.Models.Node> nodeList = new ArrayList<>();
 
@@ -252,7 +252,7 @@ public class Loader {
     public static ArrayList<fhnw.wibb.dijkstra.Models.Node> loadDijkstraNodes() {
 
         String nodesFile = "/nodes.csv";
-        // String nodesFile = "/nodes_small.csv";
+        // String nodesFile = "/nodes_small.csv.csv";
 
         // Create an empty ArrayList to store the nodes
         ArrayList<fhnw.wibb.dijkstra.Models.Node> nodeList = new ArrayList<>();

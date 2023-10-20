@@ -88,16 +88,23 @@ Brevity is the soul of wit / In der Kürze liegt die Würze / Omit needless word
 
 
 3) **How long does it take?**
-- ![measurements.png](src%2Fmain%2Fresources%2Fdocs%2Fmeasurements.png)
+- ![measurements_big.png](src%2Fmain%2Fresources%2Fdocs%2Fgraph_big%2Fmeasurements_big.png)
 - Conclusion from this analysis:
-  - We compared several runs for different algorithms and measured the time in nanoseconds.
-  - Therefore, we used the same starting and ending nodes and tested those for the algorithms Depth First, Breadth First, Best First.
+  - We compared Depth First, Breadth First and Best First in a total of 10 scenarios, where each scenario has a given start and destination node.
   - The diagram indicates fast runs with a green bar, medium runs with a yellow bar, and slow runs with a red one.
-  - In 7/10 runs, the algorithm Best First had the fastest runtime.
-  - In 6/10 runs, the algorithm Depth First had the slowest runtime.
+  - The diagram indicates the fastest runtime with a green bar, the 2'nd fastest runtime with a yellow bar and the slowest runtime with a red bar.
+  - In 7/10 runs, the Best First algorithm had the fastest runtime.
+  - In 6/10 runs, the Depth First algorithm had the slowest runtime.
 
 4) **How do the algorithms perform on graphs of varying sizes (small, large)?**
-   - TODO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! @JOEL THE GOAT MOWGLIIII 
+- ![measurements_small.png](src%2Fmain%2Fresources%2Fdocs%2Fgraph_small%2Fmeasurements_small.png)
+- Conclusion from this analysis:
+  - During this test, we also compared Depth First, Breadth First and Best first in a total of 10 scenarios, where each scenario has a given start and destination node.
+  - The main difference between the test mentioned above is that during this test, the underlying graph only contained 23 nodes.
+  - The two graphs are not congruent, hence the results between the two graphs are incomparable.
+  - However, it can be stated that with a decreasing number of nodes, the overall runtime for each algorithm decreases as well.
+  - In 4/10 runs, the Breadth First algorithm had the fastest runtime. Both other algorithms only scored this rank 3/10 times.
+  - In 4/10 runs, the Depth First algorithm had the slowest runtime.
 5) **Measure the memory consumption of each algorithm. Does it scale with the size of the graph?**
    - **Comment:** When trying to measure memory consumption for each algorithm, we noticed that the memory stays almost unaffected during the runtime of each algorithm. This is due to not many objects being created during the algorithms itself.
        What obviously has an influence on memory consumption, however, is the loading of the data. We have slightly different representations of a Node for each algorithm, but since these differences are minimal (only a few attributes), the differences in memory consumption are minimal as well. Hence, we decided to not graphically display these differences, nor to write any measurements down.
